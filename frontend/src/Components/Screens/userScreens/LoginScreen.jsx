@@ -20,13 +20,13 @@ function LoginScreen() {
                                 }
                             })} />
 
-                            {errors.email && errors.email.message}
 
                             <TextField id='outlined-basic' label="Password" variant="outlined"         {...register("password", {
                                 validate: value => value !== "admin" || "Nice try!"
                             })} />
-                            {errors.password && errors.password.message}
                             <Button type="submit">Submit</Button>
+                            {errors.email && errors.email.message}
+                            {errors.password && errors.password.message}
 
                         </form>
                     </Paper>
