@@ -1,5 +1,5 @@
 import React from 'react'
-import { Paper, Button, Box } from '@mui/material'
+import { Paper, Button, Box, Grid } from '@mui/material'
 import Carousel from 'react-material-ui-carousel'
 import Cars from '../Cars.json'
 
@@ -8,27 +8,30 @@ function HomeScreenCarousel() {
     return (
         <Carousel marginY={2} >
             {
-                Cars.map((item, i) => <Item key={i} item={item} />)
+                Cars.map((item, i) => <CarouselItem key={i} item={item} />)
             }
         </Carousel>
     )
 }
 
-function Item(props) {
+function CarouselItem(props) {
     return (
-        <Paper style={{ display: "flex", alignItems: "center", justifyContent: 'space-between' }}>
-            <Box >
-                <img src={props.item.img} alt="" style={{ maxWidth: "40em", height: "30em", objectFit: "cover" }} />
-            </Box>
-            <Box>
+        <Grid container spacing={2} style={{ display: "flex", alignItems: "center", justifyContent: 'space-between' }}>
+            <Grid item xs={12} md={6} >
+
+
+                <img src={props.item.img} alt="" style={{ maxWidth: "100%", height: "auto", objectFit: "cover" }} />
+
+            </Grid>
+            <Grid item xs={12} md={6}>
+
+
                 <h2>{props.item.manufacturer}</h2>
                 <p>{props.item.model}</p>
-                <Button className="CheckButton">
-                    Check it out!
-                </Button>
-            </Box>
 
-        </Paper>
+            </Grid>
+
+        </Grid>
     )
 }
 

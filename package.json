@@ -3,9 +3,25 @@
   "version": "1.0.0",
   "description": "car rental mern application",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node backend/server",
+    "server": "nodemon backend/server",
+    "client": " npm start --prefix frontend",
+    "dev": "concurrently \"npm run servear\" \"npm run client\"",
+    "data:import":"node backend/seeder",
+    "data:destroy":"node backend/seeder -d"
   },
   "author": "Aswin-k-ashok",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "mongoose": "^6.2.8"
+  },
+  "devDependencies": {
+    "concurrently": "^7.0.0",
+    "nodemon": "^2.0.15"
+  }
 }
