@@ -4,7 +4,7 @@ import { Link } from '@mui/material'
 import { useForm } from 'react-hook-form'
 import './userScreen.css'
 
-function LoginScreen() {
+function AdminLoginScreen() {
     const { handleSubmit, register, formState: { errors } } = useForm();
     const onSubmit = values => console.log(values);
     return (
@@ -13,7 +13,7 @@ function LoginScreen() {
                 <Grid item xs={4}>
                     <Paper elevation={2} Padding={5} >
                         <form onSubmit={handleSubmit(onSubmit)} style={{ display: 'flex', flexDirection: 'column', alignItems: "center", padding: '3em' }}>
-                            <h1>log-in</h1>
+                            <h1>Admin</h1>
 
                             <TextField id='outlined-basic' label="Email" variant="outlined" style={{ width: '80%', margin: "2em" }} {...register("email", {
                                 required: "Required",
@@ -49,4 +49,4 @@ function LoginScreen() {
     )
 }
 
-export default LoginScreen
+export default AdminLoginScreen

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Container } from '@mui/material'
+import { Button, Container } from '@mui/material'
 import { styled, alpha } from '@mui/material/styles'
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
@@ -13,6 +13,7 @@ import Menu from '@mui/material/Menu'
 import MenuIcon from '@mui/icons-material/Menu'
 import SearchIcon from '@mui/icons-material/Search'
 import AccountCircle from '@mui/icons-material/AccountCircle'
+import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import MailIcon from '@mui/icons-material/Mail'
 import NotificationsIcon from '@mui/icons-material/Notifications'
 import MoreIcon from '@mui/icons-material/MoreVert'
@@ -97,9 +98,23 @@ export default function PrimarySearchAppBar() {
             }}
             open={isMenuOpen}
             onClose={handleMenuClose}
+        // style={{ display: 'flex', flexDirection: "column" }}
         >
             <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
             <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+            <MenuItem >
+                <IconButton
+                    size='large'
+                    aria-label='account of current user'
+                    aria-controls='primary-search-account-menu'
+                    aria-haspopup='true'
+                    color='inherit'
+                >
+
+                    <Button variant='outlined' color="error"><LogoutRoundedIcon />log out</Button>
+                </IconButton>
+
+            </MenuItem>
         </Menu>
     )
 
@@ -150,14 +165,29 @@ export default function PrimarySearchAppBar() {
                 >
                     <AccountCircle />
                 </IconButton>
+
                 <p>Profile</p>
+            </MenuItem>
+
+            <MenuItem >
+                <IconButton
+                    size='large'
+                    aria-label='account of current user'
+                    aria-controls='primary-search-account-menu'
+                    aria-haspopup='true'
+                    color='inherit'
+                >
+
+                    <Button variant='outlined' color="error"><LogoutRoundedIcon />log out</Button>
+                </IconButton>
+
             </MenuItem>
         </Menu>
     )
 
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar position='static'>
+            <AppBar position='static' style={{ backgroundColor: "#4A6163" }}>
                 <Toolbar>
                     {/* <IconButton
                         size='large'
@@ -169,9 +199,9 @@ export default function PrimarySearchAppBar() {
                         <MenuIcon />
                     </IconButton> */}
                     <Typography
-                        variant='h3'
+                        variant='button'
                         noWrap
-                        component=''
+                        component='h1'
                         paddingY={2}
                         sx={{ display: { xs: 'none', sm: 'block' } }}
                     >
