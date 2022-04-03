@@ -4,6 +4,7 @@ import Cars from '../../../Cars.json'
 import HomeScreenCarousel from '../../HomeScreenCarousel'
 import HomePageCards from '../../HomePageCards'
 import HomeBanner from '../../HomeBanner'
+import CarsCard from '../../CarsCard'
 import { Box } from '@mui/system'
 
 
@@ -15,8 +16,8 @@ function HomeScreen() {
             <Container>
                 <HomeBanner />
                 <HomePageCards />
-
                 <HomeScreenCarousel />
+                <CarsCard />
             </Container>
 
 

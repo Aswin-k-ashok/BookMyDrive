@@ -5,6 +5,7 @@ import AppBar from './Components/AppBar'
 import HomeScreen from './Components/Screens/userScreens/HomeScreen'
 import LoginScreen from './Components/Screens/userScreens/LoginScreen'
 import RegisterScreen from './Components/Screens/userScreens/RegisterScreen'
+import UserProfile from './Components/Screens/userScreens/UserProfile'
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route path='/login' element={<LoginScreen />} />
         <Route path='/register' element={<RegisterScreen />} />
+        <Route path='/profile' element={<UserProfile />} />
         <Route path='/' element={<HomeScreen />} />
       </Routes>
     </Router>

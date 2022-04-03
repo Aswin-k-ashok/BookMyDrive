@@ -1,6 +1,6 @@
 import React from 'react'
 import { Grid, TextField, Paper, Button, Typography, Container } from '@mui/material'
-import { Link } from '@mui/material'
+import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import './userScreen.css'
 
@@ -94,7 +94,7 @@ function RegisterScreen() {
               </Button>
 
               <Typography variant='subtitle1'>
-                need an account ? <Link>register now</Link>
+                already a member ? <Link to='/login'>login</Link>
               </Typography>
 
               <p style={{ color: 'red' }}>

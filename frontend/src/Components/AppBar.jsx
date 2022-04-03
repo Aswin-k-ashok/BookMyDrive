@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Button, Container } from '@mui/material'
 import { styled, alpha } from '@mui/material/styles'
 import AppBar from '@mui/material/AppBar'
@@ -17,6 +18,7 @@ import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import MailIcon from '@mui/icons-material/Mail'
 import NotificationsIcon from '@mui/icons-material/Notifications'
 import MoreIcon from '@mui/icons-material/MoreVert'
+
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -59,6 +61,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }))
 
 export default function PrimarySearchAppBar() {
+    const navigate = useNavigate()
     const [anchorEl, setAnchorEl] = React.useState(null)
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null)
 
@@ -186,7 +189,8 @@ export default function PrimarySearchAppBar() {
     )
 
     return (
-        <Box sx={{ flexGrow: 1 }}>
+
+        <Box Box sx={{ flexGrow: 1 }}>
             <AppBar position='static' style={{ backgroundColor: "#4A6163" }}>
                 <Toolbar>
                     {/* <IconButton
@@ -204,6 +208,7 @@ export default function PrimarySearchAppBar() {
                         component='h1'
                         paddingY={2}
                         sx={{ display: { xs: 'none', sm: 'block' } }}
+                        onClick={() => navigate('/')}
                     >
                         Book My Drive
                     </Typography>
@@ -264,6 +269,6 @@ export default function PrimarySearchAppBar() {
             </AppBar>
             {renderMobileMenu}
             {renderMenu}
-        </Box>
+        </Box >
     )
 }
