@@ -103,20 +103,24 @@ export default function PrimarySearchAppBar() {
             onClose={handleMenuClose}
         // style={{ display: 'flex', flexDirection: "column" }}
         >
-            <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-            <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-            <MenuItem >
-                <IconButton
-                    size='large'
-                    aria-label='account of current user'
-                    aria-controls='primary-search-account-menu'
-                    aria-haspopup='true'
-                    color='inherit'
-                >
+            <MenuItem onClick={handleMenuClose}>
+                <ul>
+                    <li onClick={() => navigate('/profile')}>profile</li>
+                    <li >
+                        <IconButton
+                            size='large'
+                            aria-label='account of current user'
+                            aria-controls='primary-search-account-menu'
+                            aria-haspopup='true'
+                            color='inherit'
+                        >
 
-                    <Button variant='outlined' color="error"><LogoutRoundedIcon />log out</Button>
-                </IconButton>
+                            <Button variant='outlined' color="error"><LogoutRoundedIcon />log out</Button>
+                        </IconButton>
 
+                    </li>
+
+                </ul>
             </MenuItem>
         </Menu>
     )
@@ -158,7 +162,7 @@ export default function PrimarySearchAppBar() {
                 </IconButton>
                 <p>Notifications</p>
             </MenuItem>
-            <MenuItem onClick={handleProfileMenuOpen}>
+            <MenuItem >
                 <IconButton
                     size='large'
                     aria-label='account of current user'
@@ -169,7 +173,7 @@ export default function PrimarySearchAppBar() {
                     <AccountCircle />
                 </IconButton>
 
-                <p>Profile</p>
+                <p onClick={() => navigate('/profile')}>Profile</p>
             </MenuItem>
 
             <MenuItem >
@@ -191,7 +195,7 @@ export default function PrimarySearchAppBar() {
     return (
 
         <Box Box sx={{ flexGrow: 1 }}>
-            <AppBar position='static' style={{ backgroundColor: "#4A6163" }}>
+            <AppBar position='static' style={{ backgroundColor: "#172135" }}>
                 <Toolbar>
                     {/* <IconButton
                         size='large'
@@ -203,14 +207,14 @@ export default function PrimarySearchAppBar() {
                         <MenuIcon />
                     </IconButton> */}
                     <Typography
-                        variant='button'
+                        variant='h4'
                         noWrap
                         component='h1'
                         paddingY={2}
                         sx={{ display: { xs: 'none', sm: 'block' } }}
                         onClick={() => navigate('/')}
                     >
-                        Book My Drive
+                        BOOK MY DRIVE
                     </Typography>
                     <Box sx={{ flexGrow: 1 }} />
                     <Search>

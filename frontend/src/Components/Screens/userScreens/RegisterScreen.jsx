@@ -94,7 +94,7 @@ function RegisterScreen() {
               </Button>
 
               <Typography variant='subtitle1'>
-                already a member ? <Link to='/login'>login</Link>
+                already a member ? <Link to='/login' style={{ textDecoration: 'none' }}>login</Link>
               </Typography>
 
               <p style={{ color: 'red' }}>
