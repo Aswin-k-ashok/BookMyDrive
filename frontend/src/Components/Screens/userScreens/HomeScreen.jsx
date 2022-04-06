@@ -12,7 +12,7 @@ import { Box } from '@mui/system'
 function HomeScreen() {
 
     return (
-        <Box marginY={1}>
+        <Box >
             <Container>
                 <HomeBanner />
                 <HomePageCards />

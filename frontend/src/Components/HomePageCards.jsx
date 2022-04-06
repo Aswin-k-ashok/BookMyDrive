@@ -37,7 +37,7 @@ function HomePageCards() {
 
                     <iframe src="https://embed.lottiefiles.com/animation/92808" style={{ border: 'none', backgroundColor: 'white', width: '100%' }}></iframe>
                     <Paper>
-                        <p className={classes.flexPaper}>pick your dream car</p>
+                        <p className={classes.flexPaper}>U'r Car  U'r Choice</p>
                     </Paper>
                 </Card>
             </Grid>

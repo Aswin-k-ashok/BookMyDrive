@@ -1,7 +1,8 @@
-import loginReducer from './Features/userFeatures'
-
+import loginReducer from './Features/userFeatures/userLoginFeatures'
+import registerReducer from './Features/userFeatures/userRegisterFeature'
 const rootReducer = {
-  userDataLogdIn: loginReducer,
+  login: loginReducer,
+  register: registerReducer,
 }
 
 export default rootReducer

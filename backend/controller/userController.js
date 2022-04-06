@@ -23,6 +23,10 @@ const authUser = asyncHandler(async (req, res) => {
     res.json({
       _id: user._id,
       firstName: user.firstName,
+      lastName: user.lastName,
+      phone: user.phone,
+      isBlocked: user.isBlocked,
+      isOwner: user.isOwner,
       email: user.email,
       token: generateToken(user._id),
     })
@@ -31,6 +35,7 @@ const authUser = asyncHandler(async (req, res) => {
     throw new Error('invalid email / password')
   }
 })
+
 //@desc admin login
 //@ reouter POST /api/admin/login
 //@access private
@@ -63,6 +68,10 @@ const getUserProfile = asyncHandler(async (req, res) => {
     res.json({
       _id: user._id,
       firstName: user.firstName,
+      lastName: user.lastName,
+      phone: user.phone,
+      isBlocked: user.isBlocked,
+      isOwner: user.isOwner,
       email: user.email,
     })
   } else {

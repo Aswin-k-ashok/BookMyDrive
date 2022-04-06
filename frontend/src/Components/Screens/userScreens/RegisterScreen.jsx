@@ -1,16 +1,37 @@
 import React from 'react'
+import { useEffect } from 'react'
 import { Grid, TextField, Paper, Button, Typography, Container } from '@mui/material'
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
+import { useSelector, useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { userRegister } from '../../../Redux/Features/userFeatures/userRegisterFeature'
 import './userScreen.css'
 
 function RegisterScreen() {
-  const {
-    handleSubmit,
-    register,
-    formState: { errors },
-  } = useForm()
-  const onSubmit = (values) => console.log(values)
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+
+  const { handleSubmit, register, formState: { errors }, } = useForm()
+
+
+  const onSubmit = (values) => {
+    console.log(values)
+    dispatch(userRegister(values))
+    navigate('/login')
+  }
+
+  useEffect(() => {
+
+  }, [dispatch])
+
+
+
+
+
+
   return (
     <Container>
       <Grid container spacing={3} className='loginGrid' marginY={3}>
@@ -79,6 +100,17 @@ function RegisterScreen() {
                 id='outlined-basic'
                 label='Password'
                 variant='outlined'
+                type='password'
+                style={{ width: '80%', margin: '2em' }}
+                {...register('password', {
+                  validate: (value) => value !== 'admin' || 'Nice try!',
+                })}
+              />
+              <TextField
+                id='outlined-basic'
+                label='Confirm Password'
+                variant='outlined'
+                type='password'
                 style={{ width: '80%', margin: '2em' }}
                 {...register('password', {
                   validate: (value) => value !== 'admin' || 'Nice try!',
