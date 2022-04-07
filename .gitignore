@@ -3,6 +3,10 @@
 # dependencies
 /node_modules
 node_modules/
+
+helpers/
+/helpers
+
 /.pnp
 .pnp.js
 

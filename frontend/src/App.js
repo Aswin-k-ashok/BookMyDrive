@@ -5,6 +5,7 @@ import HomeScreen from './Components/Screens/userScreens/HomeScreen'
 import LoginScreen from './Components/Screens/userScreens/LoginScreen'
 import RegisterScreen from './Components/Screens/userScreens/RegisterScreen'
 import UserProfile from './Components/Screens/userScreens/UserProfile'
+import ImageUpload from './Components/Screens/ownerScreens/ImageUpload'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path='/login' element={<LoginScreen />} />
         <Route path='/register' element={<RegisterScreen />} />
         <Route path='/profile' element={<UserProfile />} />
+        <Route path='/upload' element={<ImageUpload />} />
         <Route path='/' element={<HomeScreen />} />
       </Routes>
     </Router>
