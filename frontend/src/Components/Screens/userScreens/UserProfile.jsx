@@ -8,6 +8,7 @@ import { makeStyles } from '@mui/styles';
 import { Container } from '@mui/material';
 import styled from 'styled-components'
 import ProfileCard from '../../ProfileCard';
+import ProfileUpdate from './ProfileUpdate';
 
 const Glgird = styled.div`
 
@@ -89,7 +90,7 @@ export default function BasicTabs() {
             <ProfileCard />
           </TabPanel>
           <TabPanel value={value} index={1}>
-            Item Two
+            <ProfileUpdate />
           </TabPanel>
           <TabPanel value={value} index={2}>
             Item Three

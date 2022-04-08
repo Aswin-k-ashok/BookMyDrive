@@ -4,6 +4,8 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import { cardata } from '../helpers/cardata'
+import Loader from './Loader'
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 
 const CardStyle = styled.div`
 border-radius:8px;
@@ -60,14 +62,16 @@ function ProfileCard() {
                                 <li>
                                     <button onClick={() => cardata()}>car data</button>
                                 </li>
+                                <li>
+                                    <Loader />
+                                </li>
                             </ul>
                         </Grid>
                         <Grid item md={4}>
 
 
                             <img src='' />
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam exercitationem optio fugit necessitatibus culpa nulla saepe labore error voluptatibus ut placeat nesciunt, vel quasi consequatur.
-
+                            <AddPhotoAlternateIcon style={{ fontSize: '8em' }} />
                         </Grid>
                     </Grid>
 

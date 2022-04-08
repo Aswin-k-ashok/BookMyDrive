@@ -10,6 +10,9 @@ import { makeStyles } from '@mui/styles'
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { logedInUser } from '../Redux/Features/userFeatures/userLoginFeatures';
+import { COLORS } from './customColors'
+
+
 
 const useStyles = makeStyles({
     acountMenuStyle: {
@@ -41,17 +44,20 @@ export default function ButtonAppBar() {
         <Box sx={{ flexGrow: 1 }}>
 
             console.log(userInfo)
-            <AppBar position="static" style={{ position: 'fixed', top: '0' }}>
+            <AppBar position="static" style={{ position: 'fixed', top: '0', backgroundColor: COLORS.primaryColor, zIndex: '500' }}>
                 <Toolbar>
                     <Button
                         size="large"
                         edge="start"
-                        color="inherit"
+                        color='inherit'
                         aria-label="menu"
                         sx={{ mr: 2 }}
                     >
                     </Button>
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} onClick={() => navigate('/')}>
+                    <Typography variant='h4' component='p' style={{ marginRight: '1em', marginTop: '0.2em', marginBottom: '0.2em', backgroundColor: COLORS.backgroundColor, color: COLORS.myWhite, borderRadius: '50px', padding: '10px' }}>
+                        bmd
+                    </Typography>
+                    <Typography variant="button" component="div" sx={{ flexGrow: 1, fontSize: '30px', fontWeight: '900' }} onClick={() => navigate('/')}>
                         Book My Drive
                     </Typography>
                     <AccountMenu className={classes.acountMenuStyle} />
