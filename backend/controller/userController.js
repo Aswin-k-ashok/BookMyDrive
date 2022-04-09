@@ -127,16 +127,27 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     user.lastName = req.body.lastName || user.lastName
     user.email = req.body.email || user.email
     user.phone = req.body.phone || user.phone
+    console.log(user.password)
 
-    const updateUser = await user.save()
-    res.json({
-      _id: updateUser._id,
-      firstName: updateUser.firstName,
-      lastName: updateUser.lastName,
-      email: updateUser.email,
-      phone: updateUser.phone,
-      token: generateToken(updateUser._id),
-    })
+    let pass = user && (await user.matchPassword(req.body.password))
+
+    console.log(pass)
+
+    if (user && (await user.matchPassword(req.body.password))) {
+      const updateUser = await user.save()
+      res.json({
+        _id: updateUser._id,
+        firstName: updateUser.firstName,
+        lastName: updateUser.lastName,
+        email: updateUser.email,
+        phone: updateUser.phone,
+        token: generateToken(updateUser._id),
+        message: 'profile updated successfully',
+      })
+    } else {
+      res.status(404)
+      throw new Error('password dont match')
+    }
   } else {
     res.status(404)
     throw new Error('user not found')

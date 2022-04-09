@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { fetchBaseQuery } from '@reduxjs/toolkit/query'
 import axios from 'axios'
 
 const initialState = {
@@ -10,15 +11,9 @@ const initialState = {
 export const userUpdate = createAsyncThunk(
   'user/update',
   async (values, getState) => {
-    let firstName = values.firstName
-    let lastName = values.lastName
-    let email = values.email
-    let phone = values.phone
+    const user = JSON.parse(localStorage.getItem('user'))
 
-    const {
-      userLogin: { user },
-    } = getState()
-    console.log(user)
+    console.log(user.token)
 
     const config = {
       headers: {
@@ -27,7 +22,30 @@ export const userUpdate = createAsyncThunk(
       },
     }
 
-    let response = await axios.put('/api/users/update', values, config)
+    let response = await axios.put('/api/users/profile', values, config)
     return response.data
   }
 )
+
+const userUpdateSlice = createSlice({
+  name: 'users',
+  initialState: initialState,
+  extraReducers: (builder) => {
+    builder
+      .addCase(userUpdate.pending, (state, action) => {
+        state.loading = true
+      })
+      .addCase(userUpdate.fulfilled, (state, action) => {
+        state.loading = false
+        state.user = action.payload
+
+        localStorage.setItem('user', JSON.stringify(state.user))
+      })
+      .addCase(userUpdate.rejected, (state, action) => {
+        state.loading = false
+        state.error = 'error'
+      })
+  },
+})
+
+export default userUpdateSlice.reducer

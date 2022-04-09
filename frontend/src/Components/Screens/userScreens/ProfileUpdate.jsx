@@ -1,7 +1,10 @@
 import React from 'react'
 import { makeStyles } from '@mui/styles';
 import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux'
+import { userUpdate } from '../../../Redux/Features/userFeatures/userUpdateFeature'
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
+import { useEffect } from 'react';
 
 
 const styles = makeStyles({
@@ -23,19 +26,41 @@ const styles = makeStyles({
 
 function ProfileUpdate() {
 
+    const dispatch = useDispatch()
     const classes = styles()
+
+    let userData = useSelector((state) => {
+        return state['login']
+    })
+
+    let { loading, user, error } = userData
+
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
+
+    const onSubmit = data => {
+
+        dispatch(userUpdate(data))
+
+    }
+
+    useEffect(() => {
+        console.log('hello');
+    }, [dispatch])
+
+
+    // const onSubmit = data => console.log(data);
+
+
     console.log(errors);
     return (
         <div>
             <form onSubmit={handleSubmit(onSubmit)} className={classes.formStyle}>
                 <AddPhotoAlternateIcon style={{ fontSize: '8em' }} />
 
-                <input type="text" placeholder="First name" {...register("firstName", { required: true, maxLength: 80 })} className={classes.formStyleInput} />
-                <input type="text" placeholder="Last name" {...register("lastName", { required: true, maxLength: 100 })} className={classes.formStyleInput} />
-                <input type="text" placeholder="Email" {...register("email", { required: true, pattern: /^\S+@\S+$/i })} className={classes.formStyleInput} />
-                <input type="tel" placeholder="Mobile number" {...register("phone", { required: true, min: 3, maxLength: 12 })} className={classes.formStyleInput} />
+                <input type="text" defaultValue={user.firstName} {...register(user.firstName, { required: true, maxLength: 80 })} className={classes.formStyleInput} />
+                <input type="text" defaultValue={user.lastName} {...register("lastName", { required: true, maxLength: 100 })} className={classes.formStyleInput} />
+                <input type="text" defaultValue={user.email} {...register("email", { required: true, pattern: /^\S+@\S+$/i })} className={classes.formStyleInput} />
+                <input type="tel" defaultValue={user.phone} {...register("phone", { required: true, min: 3, maxLength: 12 })} className={classes.formStyleInput} />
                 <input type="password" placeholder="type in password to confirm changes" {...register("password", { required: true, min: 6 })} className={classes.formStyleInput} />
                 <input type="submit" className='btn-4' style={{ width: '20%' }} />
 
