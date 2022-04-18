@@ -5,19 +5,37 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import { Grid, Container } from '@mui/material'
-import Cars from '../Cars.json'
 import Typography from '@mui/material/Typography';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { getAllCars } from '../../../Redux/Features/carFeatures/getAllCarsFeature'
 
 
-function CarsCard() {
+
+
+function AllCars() {
+
+    const dispatch = useDispatch()
     const navigate = useNavigate()
+
+    let CarData = useSelector((state) => {
+        return state['getAllCars']
+    })
+
+    let { loading, cars, error } = CarData
+
+    console.log(CarData)
+    useEffect(() => {
+        dispatch(getAllCars())
+    }, [dispatch])
+
     return (
         <Container>
             <h1>All Cars</h1>
             <Grid container spacing={1}>
 
-                {Cars.map(car => {
+                {cars.map(car => {
                     return (
                         <Grid item lg={4} sm={12} md={6} marginY={1}>
 
@@ -27,15 +45,15 @@ function CarsCard() {
                                     alt="green iguana"
                                     minHeight="240"
 
-                                    image={car.img}
+                                    image={car.image}
                                     sx={{ maxHeight: 200 }}
                                 />
                                 <CardContent>
                                     <Typography gutterBottom variant="h5" component="div">
-                                        {car.manufacturer} {car.model}
+                                        {car.make} {car.carModel}
                                     </Typography>
                                     <Typography variant="body2" color="text.secondary">
-                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit nisi distinctio tempora praesentium, dolorem nostrum a nesciunt id aspernatur dolor.
+                                        {car.description}
                                     </Typography>
                                 </CardContent>
                                 <CardActions>
@@ -51,10 +69,4 @@ function CarsCard() {
     )
 }
 
-
-
-export default CarsCard
-
-
-
-
+export default AllCars

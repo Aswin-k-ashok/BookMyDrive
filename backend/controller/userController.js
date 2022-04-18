@@ -1,5 +1,6 @@
 import asyncHandler from 'express-async-handler'
 import User from '../models/userModel.js'
+import Admin from '../models/adminModel.js'
 import generateToken from '../utils/generateToken.js'
 
 // @desc fetch all users
@@ -37,25 +38,22 @@ const authUser = asyncHandler(async (req, res) => {
   }
 })
 
-//@desc admin login
-//@ reouter POST /api/admin/login
-//@access private
+// @desc admin login
+// @ reouter POST /api/admin/login
+// @access private
+
 const adminLogin = asyncHandler(async (req, res) => {
   const { email, password } = req.body
-  ;(async () => {
-    if (
-      req.body.email === 'admin@bookmydrive.com' &&
-      req.body.password == process.env.ADMINPASS
-    ) {
-      res.json({
-        message: 'loggd in as admin',
-        token: generateToken(req.body.email),
-      })
-    } else {
-      res.status(401)
-      throw new Error('invalid email / password')
-    }
-  })()
+  const pass = process.env.ADMINPASS
+  const admin = await Admin.findOne({ email })
+  if (admin && password === pass) {
+    res.json({
+      message: 'logged is as admin',
+    })
+  } else {
+    res.status(404)
+    throw new Error('un authorized')
+  }
 })
 
 //@desc Get user profile

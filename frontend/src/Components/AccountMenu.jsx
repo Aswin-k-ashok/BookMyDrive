@@ -29,6 +29,9 @@ export default function AccountMenu() {
 
     console.log(user)
 
+    const logo = user.firstName.toUpperCase()
+    console.log(logo)
+
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -60,7 +63,7 @@ export default function AccountMenu() {
                         aria-haspopup="true"
                         aria-expanded={open ? 'true' : undefined}
                     >
-                        <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+                        <Avatar sx={{ width: 32, height: 32 }}>{logo.charAt(0)}</Avatar>
                     </IconButton>
                 </Tooltip>
             </Box>

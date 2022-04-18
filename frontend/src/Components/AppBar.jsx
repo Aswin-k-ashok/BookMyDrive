@@ -41,23 +41,22 @@ export default function ButtonAppBar() {
 
 
     return (
-        <Box sx={{ flexGrow: 1 }}>
+        <Box sx={{ flexGrow: 1, marginBottom: '4em' }}>
 
-            console.log(userInfo)
-            <AppBar position="static" style={{ position: 'fixed', top: '0', backgroundColor: COLORS.primaryColor, zIndex: '500' }}>
+            <AppBar position="static" style={{ position: 'fixed', top: '0', backgroundColor: COLORS.primaryColor, zIndex: '500', }}>
                 <Toolbar>
                     <Button
                         size="large"
                         edge="start"
                         color='inherit'
                         aria-label="menu"
-                        sx={{ mr: 2 }}
+                        sx={{ mr: 1 }}
                     >
                     </Button>
-                    <Typography variant='h4' component='p' style={{ marginRight: '1em', marginTop: '0.2em', marginBottom: '0.2em', backgroundColor: COLORS.backgroundColor, color: COLORS.myWhite, borderRadius: '50px', padding: '10px' }}>
+                    {/* <Typography variant='h4' component='p' style={{ marginRight: '10%', marginTop: '2%', marginBottom: '2%', backgroundColor: COLORS.backgroundColor, color: COLORS.myWhite, borderRadius: '50px', padding: '10px' }}>
                         bmd
-                    </Typography>
-                    <Typography variant="button" component="div" sx={{ flexGrow: 1, fontSize: '30px', fontWeight: '900' }} onClick={() => navigate('/')}>
+                    </Typography> */}
+                    <Typography variant="button" component="div" sx={{ flexGrow: 1, fontSize: '20px', fontWeight: '900' }} onClick={() => navigate('/')}>
                         Book My Drive
                     </Typography>
                     <AccountMenu className={classes.acountMenuStyle} />

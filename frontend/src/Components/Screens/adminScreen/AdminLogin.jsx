@@ -1,15 +1,18 @@
-import React from 'react'
-import { Grid, TextField, Paper, Button, Typography } from '@mui/material'
+import React, { useEffect, useState } from 'react'
+import { Grid, TextField, Paper, Button, Typography, Container } from '@mui/material'
 import { Link } from '@mui/material'
 import { useForm } from 'react-hook-form'
-import './userScreen.css'
+import { adminLogin, adminLogout } from '../../../Redux/Features/adminFeatures/adminLoginFeature'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 function AdminLoginScreen() {
     const { handleSubmit, register, formState: { errors } } = useForm();
     const onSubmit = values => console.log(values);
+
     return (
-        <div>
-            <Grid container spacing={3} className='loginGrid'>
+        <Container justifyContent='center'>
+            <Grid container spacing={3} className='loginGrid' justifyContent='center' marginY={3}>
                 <Grid item xs={4}>
                     <Paper elevation={2} Padding={5} >
                         <form onSubmit={handleSubmit(onSubmit)} style={{ display: 'flex', flexDirection: 'column', alignItems: "center", padding: '3em' }}>
@@ -24,9 +27,7 @@ function AdminLoginScreen() {
                             })} />
 
 
-                            <TextField id='outlined-basic' label="Password" variant="outlined" style={{ width: '80%', margin: "2em" }}       {...register("password", {
-                                validate: value => value !== "admin" || "Nice try!"
-                            })} />
+                            <TextField id='outlined-basic' label="Password" variant="outlined" style={{ width: '80%', margin: "2em" }}       {...register("password")} />
                             <Button type="submit" color='success' variant='outlined' style={{ margin: '2em' }}>Submit</Button>
 
                             <Typography variant='subtitle1'>need an account ? <Link>register now</Link></Typography>
@@ -45,7 +46,7 @@ function AdminLoginScreen() {
 
             </Grid>
 
-        </div>
+        </Container>
     )
 }
 

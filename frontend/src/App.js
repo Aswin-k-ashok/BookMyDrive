@@ -6,7 +6,8 @@ import LoginScreen from './Components/Screens/userScreens/LoginScreen'
 import RegisterScreen from './Components/Screens/userScreens/RegisterScreen'
 import UserProfile from './Components/Screens/userScreens/UserProfile'
 import ImageUpload from './Components/Screens/ownerScreens/ImageUpload'
-
+import AdminLoginScreen from './Components/Screens/adminScreen/AdminLogin'
+import CarDetails from './Components/Screens/userScreens/CarDetails'
 function App() {
   return (
     <Router>
@@ -16,6 +17,8 @@ function App() {
         <Route path='/register' element={<RegisterScreen />} />
         <Route path='/profile' element={<UserProfile />} />
         <Route path='/upload' element={<ImageUpload />} />
+        <Route path='/carinfo' element={<CarDetails />} />
+        <Route path='/admin' element={<AdminLoginScreen />} />
         <Route path='/' element={<HomeScreen />} />
       </Routes>
     </Router>

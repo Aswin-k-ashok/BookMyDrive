@@ -9,13 +9,15 @@ import { Container } from '@mui/material';
 import styled from 'styled-components'
 import ProfileCard from '../../ProfileCard';
 import ProfileUpdate from './ProfileUpdate';
+import OwnerRegister from './OwnerRegister';
+import CarUpload from '../ownerScreens/CarUpload';
 
 const Glgird = styled.div`
-
-background: rgba( 35, 35, 35, 0.3 );
+min-height:80vh;
+background: rgba( 255, 255, 255, 0.05 );
 box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-backdrop-filter: blur( 14.5px );
--webkit-backdrop-filter: blur( 14.5px );
+backdrop-filter: blur( 13.5px );
+-webkit-backdrop-filter: blur( 13.5px );
 border-radius: 10px;
 border: 1px solid rgba( 255, 255, 255, 0.18 );
 
@@ -59,9 +61,13 @@ function a11yProps(index) {
 export default function BasicTabs() {
   const useStyles = makeStyles({
     gradientBackground: {
-      backgroundImage: 'linear-gradient(120deg, #cfd9df 0%, #e2ebf0 100%)',
+      // backgroundImage: 'linear-gradient(120deg, #cfd9df 0%, #e2ebf0 100%)',
+      backgroundImage: `url("https://firebasestorage.googleapis.com/v0/b/bmdimageupload.appspot.com/o/images%2FCity%20driver-cuate.png0c2aa81b-a35f-4781-a1a0-579fb874e92e?alt=media&token=de1bc275-622e-4492-8d8c-283c236d08c2")`,
+      backgroundRepeat: 'round',
       padding: '5em',
-      borderRadius: '8px'
+      marginTop: '3em',
+      borderRadius: '8px',
+      minHeight: '80vh'
     }
   })
 
@@ -74,16 +80,17 @@ export default function BasicTabs() {
   };
 
   return (
-    <Container style={{ marginTop: '3em' }} className={classes.gradientBackground}>
+    <Container style={{}} className={classes.gradientBackground}>
       <Glgird>
-
+        <h2 style={{ margin: '1em' }}>Dashboard</h2>
         <Box sx={{ width: '100%', marginTop: '2em', color: 'white' }}>
-          <Box sx={{ borderBottom: 0, borderColor: 'tranparant' }}>
+          <Box sx={{ borderBottom: 0, borderColor: 'tranparant', display: 'flex', justifyContent: 'center' }}>
             <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" >
-              <Tab label="profile" {...a11yProps(0)} style={{ color: 'white', fontWeight: '800' }} />
-              <Tab label="update profile" {...a11yProps(1)} style={{ color: 'white', fontWeight: '800' }} />
-              <Tab label="history" {...a11yProps(2)} style={{ color: 'white', fontWeight: '800' }} />
-              <Tab label="partner page" {...a11yProps(2)} style={{ color: 'white', fontWeight: '800' }} />
+              <Tab label="profile" {...a11yProps(0)} style={{ color: 'white', fontWeight: '800', background: 'black', borderRadius: '10px 0px 0px 10px' }} />
+              <Tab label="update profile" {...a11yProps(1)} style={{ color: 'white', fontWeight: '800', background: 'black' }} />
+              <Tab label="history" {...a11yProps(2)} style={{ color: 'white', fontWeight: '800', background: 'black' }} />
+              <Tab label="partner page" {...a11yProps(2)} style={{ color: 'white', fontWeight: '800', background: 'black' }} />
+              <Tab label="car upload" {...a11yProps(2)} style={{ color: 'white', fontWeight: '800', background: 'black', borderRadius: '0px 10px  10px 0px' }} />
             </Tabs>
           </Box>
           <TabPanel value={value} index={0}>
@@ -93,13 +100,13 @@ export default function BasicTabs() {
             <ProfileUpdate />
           </TabPanel>
           <TabPanel value={value} index={2}>
-            Item Three
+            item 3
           </TabPanel>
           <TabPanel value={value} index={3}>
-            Item four
+            <OwnerRegister />
           </TabPanel>
           <TabPanel value={value} index={4}>
-            Item five
+            <CarUpload />
           </TabPanel>
         </Box>
       </Glgird>

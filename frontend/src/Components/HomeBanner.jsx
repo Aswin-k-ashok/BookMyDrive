@@ -7,7 +7,7 @@ import { Button, Grid } from '@mui/material'
 const useStyles = makeStyles({
     bannerImage: {
         width: '100%',
-        height: '500px',
+        height: 'auto',
         objectFit: 'cover',
     },
     bannerText: {

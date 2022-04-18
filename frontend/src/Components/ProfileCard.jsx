@@ -3,7 +3,7 @@ import { borderRadius } from '@mui/system'
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components'
-import { cardata } from '../helpers/cardata'
+import getCarData from '../helpers/cardata'
 import Loader from './Loader'
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 
@@ -39,9 +39,11 @@ function ProfileCard() {
 
     let { loading, user, error } = userData
 
+    const params = { make: 'Volvo' }
+
     return (
         <div>
-            <Grid container>
+            <Grid container style={{ color: 'black' }}>
                 <Grid item sm={12}>
                     <Grid container>
                         <Grid item md={8}>
@@ -59,12 +61,12 @@ function ProfileCard() {
                                 <li>
                                     <p>{user.address}</p>
                                 </li>
-                                <li>
-                                    <button onClick={() => cardata()}>car data</button>
+                                {/* <li>
+                                    <button onClick={() => getCarData(params)}>car data</button>
                                 </li>
                                 <li>
                                     <Loader />
-                                </li>
+                                </li> */}
                             </ul>
                         </Grid>
                         <Grid item md={4}>
@@ -78,10 +80,14 @@ function ProfileCard() {
                 </Grid>
                 <Grid item sm={12}>
                     <Grid container spacing={2}>
-                        <Grid item md={6} sm={12}> <CardStyle >Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, aliquid?</CardStyle></Grid>
-                        <Grid item md={6} sm={12}> <CardStyle >Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, aliquid?</CardStyle></Grid>
-                        <Grid item md={6} sm={12}> <CardStyle >Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, aliquid?</CardStyle></Grid>
-                        <Grid item md={6} sm={12}> <CardStyle >Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni, aliquid?</CardStyle></Grid>
+                        <Grid item md={6} sm={12}> <CardStyle >money spend
+                            <h1>25000 rs</h1></CardStyle></Grid>
+                        <Grid item md={6} sm={12}> <CardStyle >cars rented
+                            <h1>15</h1></CardStyle></Grid>
+                        <Grid item md={6} sm={12}> <CardStyle >community points
+                            <h1>350</h1></CardStyle></Grid>
+                        <Grid item md={6} sm={12}> <CardStyle >owners connected
+                            <h1>33</h1></CardStyle></Grid>
                     </Grid>
                 </Grid>
             </Grid>

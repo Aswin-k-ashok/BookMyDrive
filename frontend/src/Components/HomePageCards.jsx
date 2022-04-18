@@ -32,7 +32,7 @@ function HomePageCards() {
 
     return (
         <Grid container spacing={2} marginY={3} style={{ backgroundColor: "#F9FAF4", padding: "3em", borderRadius: "10px" }}>
-            <Grid item lg={4} >
+            <Grid item lg={4} md={6} sm={12} >
                 <Card className={classes.flexCard}>
 
                     <iframe src="https://embed.lottiefiles.com/animation/92808" style={{ border: 'none', backgroundColor: 'white', width: '100%' }}></iframe>
@@ -42,7 +42,7 @@ function HomePageCards() {
                 </Card>
             </Grid>
 
-            <Grid item lg={4} >
+            <Grid item lg={4} md={6} sm={12} >
                 <Card className={classes.flexCard}>
 
                     <iframe src="https://embed.lottiefiles.com/animation/31815" style={{ border: 'none', backgroundColor: 'white', width: '100%' }}></iframe>
@@ -52,7 +52,7 @@ function HomePageCards() {
                 </Card>
             </Grid>
 
-            <Grid item lg={4} >
+            <Grid item lg={4} md={6} sm={12} >
                 <Card className={classes.flexCard}>
 
                     <iframe src="https://embed.lottiefiles.com/animation/24347" style={{ border: 'none', backgroundColor: 'white', width: '100%' }}></iframe>

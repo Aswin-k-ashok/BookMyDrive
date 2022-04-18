@@ -4,6 +4,34 @@ import Carousel from 'react-material-ui-carousel'
 import Cars from '../Cars.json'
 import { makeStyles } from '@mui/styles'
 import { padding } from '@mui/system'
+import styled from 'styled-components'
+
+const CarouseOverlay = styled.div`
+postion:absolute;
+bottom: 20%;
+display:flex;
+justify-content:center;
+gap:1em;
+align-items:center;
+-webkit-transition: all 0.3s ease-in-out;
+-moz-transition: all 0.3s ease-in-out;
+-o-transition: all 0.3s ease-in-out;
+-ms-transition: all 0.3s ease-in-out;
+transition: all 0.3s ease-in-out;
+
+&:hover {
+    background-color: lightblue;
+  }
+
+&:hover {
+    postion:absolute;
+    bottom: 20%;
+    display:flex;
+    color:blue;
+    justify-content:center;
+    gap:1em;
+}
+`;
 
 const useStyles = makeStyles({
     carouselImage: {
@@ -41,17 +69,19 @@ function CarouselItem(props) {
 
     return (
         <Grid container >
-
+            <h3>Premium segment</h3>
             <Grid item xs={12} >
 
 
                 <img src={props.item.img} alt="" className={classes.carouselImage} />
-                <div className={classes.carouselText}>
+
+                <CarouseOverlay>
 
                     <h2>{props.item.manufacturer}</h2>
                     <p>{props.item.model}</p>
-                </div>
 
+
+                </CarouseOverlay>
             </Grid>
 
 
