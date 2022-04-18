@@ -36,7 +36,7 @@ const admin = (req, res, next) => {
 }
 
 const owner = (req, res, next) => {
-  if (req.user && req.user.isOnwer) {
+  if (req.user && req.user.isOwner) {
     next()
   } else {
     res.status(401)
