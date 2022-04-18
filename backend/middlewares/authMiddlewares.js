@@ -26,4 +26,22 @@ const protect = asyncHandler(async (req, res, next) => {
   }
 })
 
-export { protect }
+const admin = (req, res, next) => {
+  if (req.admin && req.admin.isAdmin) {
+    next()
+  } else {
+    res.status(401)
+    throw new Error('Not authorized as admin')
+  }
+}
+
+const owner = (req, res, next) => {
+  if (req.user && req.user.isOnwer) {
+    next()
+  } else {
+    res.status(401)
+    throw new Error('You have to be a BMD partner')
+  }
+}
+
+export { protect, admin, owner }

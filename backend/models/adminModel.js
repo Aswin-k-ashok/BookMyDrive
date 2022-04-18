@@ -8,6 +8,10 @@ const adminSchema = mongoose.Schema({
   password: {
     type: String,
   },
+  isAdmin: {
+    type: Boolean,
+    default: true,
+  },
 })
 
 adminSchema.methods.matchPassword = async function (enteredPassword) {
