@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import connectDB from './config/db.js'
 import userRoutes from './routes/userRoutes.js'
 import carRoutes from './routes/carRoutes.js'
+import adminRoutes from './routes/adminRoutes.js'
 
 dotenv.config() // need to install dot env <npm install node env> use dot env config to access all the environment variables in the .env files in the backend folder
 
@@ -17,6 +18,7 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/users', userRoutes)
+app.use('/api/admin', adminRoutes)
 app.use('/api/cars', carRoutes)
 
 app.use((err, req, res, next) => {

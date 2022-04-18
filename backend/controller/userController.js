@@ -42,19 +42,19 @@ const authUser = asyncHandler(async (req, res) => {
 // @ reouter POST /api/admin/login
 // @access private
 
-const adminLogin = asyncHandler(async (req, res) => {
-  const { email, password } = req.body
-  const pass = process.env.ADMINPASS
-  const admin = await Admin.findOne({ email })
-  if (admin && password === pass) {
-    res.json({
-      message: 'logged is as admin',
-    })
-  } else {
-    res.status(404)
-    throw new Error('un authorized')
-  }
-})
+// const adminLogin = asyncHandler(async (req, res) => {
+//   const { email, password } = req.body
+//   const pass = process.env.ADMINPASS
+//   const admin = await Admin.findOne({ email })
+//   if (admin && password === pass) {
+//     res.json({
+//       message: 'logged is as admin',
+//     })
+//   } else {
+//     res.status(404)
+//     throw new Error('un authorized')
+//   }
+// })
 
 //@desc Get user profile
 //@route GET /api/users/profile
@@ -157,6 +157,6 @@ export {
   authUser,
   getUserProfile,
   registerUser,
-  adminLogin,
+  // adminLogin,
   updateUserProfile,
 }

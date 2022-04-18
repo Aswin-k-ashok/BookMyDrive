@@ -2,7 +2,7 @@ import bcrypt from 'bcryptjs'
 import mongoose from 'mongoose'
 
 const adminSchema = mongoose.Schema({
-  userName: {
+  email: {
     type: String,
   },
   password: {
@@ -15,7 +15,7 @@ adminSchema.methods.matchPassword = async function (enteredPassword) {
 }
 
 adminSchema.pre('save', async function (next) {
-  if (!this.inModified(password)) {
+  if (!this.isModified('password')) {
     next()
   }
   const salt = await bcrypt.genSalt(10)
