@@ -56,7 +56,7 @@ const adminLogin = asyncHandler(async (req, res) => {
 })
 
 //@ desc owner request verification
-//@ router GET/api/admin/owner
+//@ router POST/api/admin/owner
 //@ access private admin
 
 const ownerVerification = asyncHandler(async (req, res) => {
@@ -81,7 +81,7 @@ const ownerVerification = asyncHandler(async (req, res) => {
 const ownerPrivilegeRemove = asyncHandler(async (req, res) => {
   const { email } = req.body
   const owner = await User.findOne({ email })
-  if (owner && (owner.isOwner = true)) {
+  if (owner) {
     owner.isOwner = false
     res.json({
       owner: owner,
@@ -93,4 +93,45 @@ const ownerPrivilegeRemove = asyncHandler(async (req, res) => {
   }
 })
 
-export { registerAdmin, adminLogin, ownerVerification, ownerPrivilegeRemove }
+//@ desc user block
+//@ desc get/api/admin/owner
+//@ access private admin
+
+const blockUser = asyncHandler(async (req, res) => {
+  const { email } = req.body
+  const user = await User.findOne({ email })
+  if (user) {
+    user.isBlocked = true
+    res.json({
+      user: user,
+      message: 'user blocked',
+    })
+  } else {
+    res.status(401)
+    throw new Error('user already blocked')
+  }
+})
+
+const unBlockUser = asyncHandler(async (req, res) => {
+  const { email } = req.body
+  const user = await User.findOne({ email })
+  if (user) {
+    user.isBlocked = false
+    res.json({
+      user: user,
+      message: 'user un blocked',
+    })
+  } else {
+    res.status(401)
+    throw new Error('user already unblocked')
+  }
+})
+
+export {
+  registerAdmin,
+  adminLogin,
+  ownerVerification,
+  ownerPrivilegeRemove,
+  blockUser,
+  unBlockUser,
+}
