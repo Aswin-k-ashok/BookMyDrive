@@ -1,6 +1,6 @@
 import asyncHandler from 'express-async-handler'
-import Car from '../models/carModel.js'
 import { v4 } from 'uuid'
+import Car from '../models/carModel.js'
 
 // @desc add a new car
 // @route POST/api/car

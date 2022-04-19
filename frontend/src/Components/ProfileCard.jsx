@@ -1,11 +1,8 @@
-import { Card, Grid } from '@mui/material'
-import { borderRadius } from '@mui/system'
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate'
+import { Grid } from '@mui/material'
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 import styled from 'styled-components'
-import getCarData from '../helpers/cardata'
-import Loader from './Loader'
-import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 
 const CardStyle = styled.div`
 border-radius:8px;

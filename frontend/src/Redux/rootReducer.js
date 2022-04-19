@@ -1,12 +1,9 @@
 import { combineReducers } from '@reduxjs/toolkit'
+import getAllCarsReducer from './Features/carFeatures/getAllCarsFeature'
 //user reducers
 import loginReducer from './Features/userFeatures/userLoginFeatures'
 import registerReducer from './Features/userFeatures/userRegisterFeature'
 import updateReducer from './Features/userFeatures/userUpdateFeature'
-
-//car reducers
-import carUploadReducer from './Features/carFeatures/uploadCarFeature'
-import getAllCarsReducer from './Features/carFeatures/getAllCarsFeature'
 
 const rootReducer = combineReducers({
   //user reducers

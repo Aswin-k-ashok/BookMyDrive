@@ -1,10 +1,9 @@
-import React from 'react'
-import { makeStyles } from '@mui/styles';
-import { useForm } from 'react-hook-form';
-import { useDispatch, useSelector } from 'react-redux'
-import { userUpdate } from '../../../Redux/Features/userFeatures/userUpdateFeature'
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
-import { useEffect } from 'react';
+import { makeStyles } from '@mui/styles';
+import React, { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { userUpdate } from '../../../Redux/Features/userFeatures/userUpdateFeature';
 
 
 const styles = makeStyles({

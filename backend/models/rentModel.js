@@ -27,6 +27,9 @@ const rentSchema = mongoose.Schema(
       type: Number,
       required: true,
     },
+    fuelPrice: {
+      type: Number,
+    },
     discount: {
       type: Number,
     },
@@ -36,7 +39,7 @@ const rentSchema = mongoose.Schema(
     cancelationStatus: {
       type: Boolean,
     },
-    tripCompletionStatus: {
+    onRentStatus: {
       type: Boolean,
     },
     user: {

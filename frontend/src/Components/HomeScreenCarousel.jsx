@@ -1,10 +1,9 @@
-import React from 'react'
-import { Paper, Button, Box, Grid } from '@mui/material'
-import Carousel from 'react-material-ui-carousel'
-import Cars from '../Cars.json'
+import { Grid } from '@mui/material'
 import { makeStyles } from '@mui/styles'
-import { padding } from '@mui/system'
+import React from 'react'
+import Carousel from 'react-material-ui-carousel'
 import styled from 'styled-components'
+import Cars from '../Cars.json'
 
 const CarouseOverlay = styled.div`
 postion:absolute;

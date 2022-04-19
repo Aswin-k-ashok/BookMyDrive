@@ -1,12 +1,11 @@
 import express from 'express'
 import {
   addCar,
-  updateCar,
-  getCarById,
-  getAllCars,
   deleteCarById,
+  getAllCars,
+  getCarById,
+  updateCar,
 } from '../controller/carController.js'
-
 import { protect } from '../middlewares/authMiddlewares.js'
 
 const router = express.Router()

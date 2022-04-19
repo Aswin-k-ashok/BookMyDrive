@@ -1,16 +1,14 @@
-import * as React from 'react';
-import { useEffect } from 'react'
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+import { makeStyles } from '@mui/styles';
+import * as React from 'react';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import AccountMenu from './AccountMenu';
-import { makeStyles } from '@mui/styles'
-import { useNavigate } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
-import { logedInUser } from '../Redux/Features/userFeatures/userLoginFeatures';
-import { COLORS } from './customColors'
+import { COLORS } from './customColors';
 
 
 

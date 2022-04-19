@@ -1,5 +1,6 @@
 import asyncHandler from 'express-async-handler'
 import Admin from '../models/adminModel.js'
+import User from '../models/userModel.js'
 import generateToken from '../utils/generateToken.js'
 
 //@ desc admin register
@@ -54,4 +55,42 @@ const adminLogin = asyncHandler(async (req, res) => {
   }
 })
 
-export { registerAdmin, adminLogin }
+//@ desc owner request verification
+//@ router GET/api/admin/owner
+//@ access private admin
+
+const ownerVerification = asyncHandler(async (req, res) => {
+  const { email } = req.body
+  const owner = await User.findOne({ email })
+  if (owner) {
+    owner.isOwner = true
+    res.json({
+      owner: owner,
+      message: 'this person is now a owner',
+    })
+  } else {
+    res.status(401)
+    throw new Error('something went wrong')
+  }
+})
+
+//@ desc owner previlate removal
+//@ router PUT/api/admin/owner
+//@ access private admin
+
+const ownerPrivilegeRemove = asyncHandler(async (req, res) => {
+  const { email } = req.body
+  const owner = await User.findOne({ email })
+  if (owner && (owner.isOwner = true)) {
+    owner.isOwner = false
+    res.json({
+      owner: owner,
+      message: 'this persons owner previlages removed',
+    })
+  } else {
+    res.status(401)
+    throw new Error('requested person is not an owner / somthing went wrong')
+  }
+})
+
+export { registerAdmin, adminLogin, ownerVerification, ownerPrivilegeRemove }

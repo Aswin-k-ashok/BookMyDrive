@@ -1,7 +1,5 @@
 import { Box } from '@mui/system'
 import React from 'react'
-import { makeStyles } from '@mui/styles'
-import styled from 'styled-components'
 
 
 function OwnerRegister() {

@@ -1,16 +1,16 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import { makeStyles } from '@mui/styles';
 import { Container } from '@mui/material';
-import styled from 'styled-components'
+import Box from '@mui/material/Box';
+import Tab from '@mui/material/Tab';
+import Tabs from '@mui/material/Tabs';
+import Typography from '@mui/material/Typography';
+import { makeStyles } from '@mui/styles';
+import PropTypes from 'prop-types';
+import * as React from 'react';
+import styled from 'styled-components';
 import ProfileCard from '../../ProfileCard';
-import ProfileUpdate from './ProfileUpdate';
-import OwnerRegister from './OwnerRegister';
 import CarUpload from '../ownerScreens/CarUpload';
+import OwnerRegister from './OwnerRegister';
+import ProfileUpdate from './ProfileUpdate';
 
 const Glgird = styled.div`
 min-height:80vh;

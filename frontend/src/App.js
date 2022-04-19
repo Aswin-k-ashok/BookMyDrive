@@ -1,13 +1,12 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { Container } from '@mui/material'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import AppBar from './Components/AppBar'
+import AdminLoginScreen from './Components/Screens/adminScreen/AdminLogin'
+import ImageUpload from './Components/Screens/ownerScreens/ImageUpload'
+import CarDetails from './Components/Screens/userScreens/CarDetails'
 import HomeScreen from './Components/Screens/userScreens/HomeScreen'
 import LoginScreen from './Components/Screens/userScreens/LoginScreen'
 import RegisterScreen from './Components/Screens/userScreens/RegisterScreen'
 import UserProfile from './Components/Screens/userScreens/UserProfile'
-import ImageUpload from './Components/Screens/ownerScreens/ImageUpload'
-import AdminLoginScreen from './Components/Screens/adminScreen/AdminLogin'
-import CarDetails from './Components/Screens/userScreens/CarDetails'
 function App() {
   return (
     <Router>

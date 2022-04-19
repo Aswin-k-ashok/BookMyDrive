@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { useForm } from 'react-hook-form';
 import { Box, Button, MenuItem, TextField } from '@mui/material';
-import { carUploadAction } from '../../../Redux/Features/carFeatures/uploadCarFeature'
-import { useSelector, useDispatch } from 'react-redux'
-import { storage } from '../../../helpers/firebase'
-import { ref, uploadBytes, getDownloadURL, listAll, list } from 'firebase/storage'
-import { v4 } from 'uuid'
+import { getDownloadURL, listAll, ref, uploadBytes } from 'firebase/storage';
+import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { v4 } from 'uuid';
+import { storage } from '../../../helpers/firebase';
+import { carUploadAction } from '../../../Redux/Features/carFeatures/uploadCarFeature';
 
 
 

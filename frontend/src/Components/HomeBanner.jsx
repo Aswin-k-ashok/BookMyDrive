@@ -1,8 +1,7 @@
+import { Grid } from '@mui/material'
+import { makeStyles } from '@mui/styles'
 import React from 'react'
 import banner from '../banner.jpg'
-import { makeStyles } from '@mui/styles'
-import { padding } from '@mui/system'
-import { Button, Grid } from '@mui/material'
 
 const useStyles = makeStyles({
     bannerImage: {

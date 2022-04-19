@@ -1,14 +1,11 @@
-import React from 'react'
-import { useEffect } from 'react'
-import { Grid, TextField, Paper, Button, Typography, Container } from '@mui/material'
-import { Link } from 'react-router-dom'
+import { Button, Container, Grid, Paper, TextField, Typography } from '@mui/material'
+import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+import styled from 'styled-components'
 import { userRegister } from '../../../Redux/Features/userFeatures/userRegisterFeature'
 import './userScreen.css'
-import styled from 'styled-components'
-import { makeStyles } from '@mui/styles'
 
 const ResponsiveTextInput = styled.div`
 

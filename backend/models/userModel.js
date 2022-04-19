@@ -36,6 +36,13 @@ const userSchema = mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    requestStatus: {
+      type: Boolean,
+      default: false,
+    },
+    carCount: {
+      type: Number,
+    },
   },
   {
     timestamps: true,

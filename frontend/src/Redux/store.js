@@ -1,18 +1,7 @@
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
-import rootReducer from './rootReducer'
-import {
-  persistStore,
-  persistReducer,
-  FLUSH,
-  REHYDRATE,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,
-} from 'redux-persist'
+import { configureStore } from '@reduxjs/toolkit'
+import { persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
-import { PersistGate } from 'redux-persist/integration/react'
-import thunk from 'redux-thunk'
+import rootReducer from './rootReducer'
 
 const persistConfig = {
   key: 'root',

@@ -1,15 +1,15 @@
-import * as React from 'react';
+import { Container, Grid } from '@mui/material';
+import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import { Grid, Container } from '@mui/material'
 import Typography from '@mui/material/Typography';
-import { useNavigate, useParams } from 'react-router-dom'
-import { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { getAllCars } from '../../../Redux/Features/carFeatures/getAllCarsFeature'
+import * as React from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { getAllCars } from '../../../Redux/Features/carFeatures/getAllCarsFeature';
 
 
 

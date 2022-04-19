@@ -1,13 +1,13 @@
-import * as React from 'react';
+import { Container, Grid } from '@mui/material';
+import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import { Grid, Container } from '@mui/material'
-import Cars from '../Cars.json'
 import Typography from '@mui/material/Typography';
-import { useNavigate } from 'react-router-dom'
+import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
+import Cars from '../Cars.json';
 
 
 function CarsCard() {
