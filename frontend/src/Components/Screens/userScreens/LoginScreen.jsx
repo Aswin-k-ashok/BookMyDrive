@@ -4,7 +4,6 @@ import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { userLogin } from '../../../Redux/Features/userFeatures/userLoginFeatures'
 import './userScreen.css'
 
 const useStyles = makeStyles({
@@ -23,20 +22,18 @@ function LoginScreen() {
     const location = useLocation()
 
     let userData = useSelector((state) => {
-        return state['login']
+        return state['logedInUser']
     })
 
-    let { loading, user, error } = userData
 
-    const isAuth = localStorage.hasOwnProperty('user')
+    // const { user } = JSON.parse(localStorage.getItem('user'))
+    const userLogin = useSelector((state) => state.logedInUser)
 
-    console.log(isAuth)
+    const { user, error, loading } = userLogin
 
-    console.log(user)
 
     const { handleSubmit, register, formState: { errors } } = useForm();
 
-    const redirect = location.search ? location.search.split('=')[1] : '/'
 
     const onSubmit = values => {
 
@@ -44,10 +41,12 @@ function LoginScreen() {
     }
 
     useEffect(() => {
-        if (isAuth) {
+        if (user) {
             navigate('/')
         }
-    }, [navigate, user, redirect])
+    }, [navigate])
+
+
 
 
 
@@ -63,36 +62,28 @@ function LoginScreen() {
                     <Grid item xs={12} md={6} >
                         <Paper elevation={2} Padding={5} >
                             <form onSubmit={handleSubmit(onSubmit)} style={{ display: 'flex', flexDirection: 'column', alignItems: "center", padding: '3em' }}>
-
                                 <h1>log-in</h1>
-
-                                <TextField id='outlined-basic' label="Email" variant="outlined" style={{ width: '80%', margin: "2em" }} {...register("email", {
+                                <TextField id='outlined-basic' label="Email" variant="outlined" helperText={errors.email && errors.email.message} style={{ width: '80%', margin: "2em" }} {...register("email", {
                                     required: "Required",
                                     pattern: {
                                         value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                                         message: "invalid email address"
                                     }
                                 })} />
-
-
-                                <TextField id='outlined-basic' type='password' label="Password" variant="outlined" style={{ width: '80%', margin: "2em" }}       {...register("password", {
-                                    validate: value => value !== "admin" || "Nice try!"
+                                <TextField id='outlined-basic' type='password' label="Password" variant="outlined" style={{ width: '80%', margin: "2em" }} helperText={errors.password && errors.password.message}      {...register("password", {
+                                    required: "Required",
+                                    message: "invalid password"
                                 })} />
-
                                 <Button type="submit" color='' className='btn-13' variant='' >Submit</Button>
                                 <Typography variant='subtitle1'>need an account ? </Typography><Link to='/register' style={{ textDecoration: 'none', color: 'primary' }}>register now</Link>
-
-                                <p style={{ color: 'red' }}>
-                                    {errors.password && errors.password.message}
-                                    {errors.email && errors.email.message}
-                                </p>
-
                             </form>
                         </Paper>
                     </Grid>
                     {/* <Grid item xs={6}>
                     <iframe src="https://embed.lottiefiles.com/animation/92808"></iframe>
                 </Grid> */}
+
+                    {error && <p>{error}</p>}
 
                 </Grid>
 

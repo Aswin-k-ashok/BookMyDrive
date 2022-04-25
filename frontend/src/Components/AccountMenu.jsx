@@ -14,20 +14,37 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { userLogout } from '../Redux/Features/userFeatures/userLoginFeatures';
 
+
 export default function AccountMenu() {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    const userData = useSelector((state) => {
-        return state['login']
-    })
+    // const userData = useSelector((state) => {
+    //     return state['logedInUser']
+    // })
 
-    let { loading, user, error } = userData
+    const { user } = useSelector((state) => state.logedInUser)
+
+    //const { user } = JSON.parse(localStorage.getItem('user'))
+
+    console.log(user, "api call-----");
+
+    // let { loading, user, error } = userData
+
+
 
     console.log(user)
+    let logo = ''
 
-    const logo = user.firstName.toUpperCase()
+    if (user) {
+
+        logo = user.firstName
+    } else {
+        logo = 'B'
+    }
+
+
     console.log(logo)
 
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -40,8 +57,10 @@ export default function AccountMenu() {
     };
 
     const logoutHandler = () => {
-        navigate('/login')
-        dispatch(userLogout())
+        if (user.firstName === "GUST") {
+            navigate('/login')
+            dispatch(userLogout())
+        }
         console.log('user logged out')
     }
 
@@ -61,7 +80,7 @@ export default function AccountMenu() {
                         aria-haspopup="true"
                         aria-expanded={open ? 'true' : undefined}
                     >
-                        <Avatar sx={{ width: 32, height: 32 }}>{logo.charAt(0)}</Avatar>
+                        <Avatar sx={{ width: 32, height: 32 }}>{logo}</Avatar>
                     </IconButton>
                 </Tooltip>
             </Box>
@@ -120,12 +139,25 @@ export default function AccountMenu() {
                     </ListItemIcon>
                     Settings
                 </MenuItem>
-                <MenuItem onClick={() => logoutHandler()}>
-                    <ListItemIcon >
-                        <Logout fontSize="small" />
-                    </ListItemIcon>
-                    Logout
-                </MenuItem>
+
+
+                {user.firstName === "GUST" ? (
+
+                    <MenuItem onClick={() => navigate('/login')}>
+                        <ListItemIcon >
+                            <Logout fontSize="small" />
+                        </ListItemIcon>
+                        Log In
+                    </MenuItem>
+                ) : (
+                    <MenuItem onClick={() => logoutHandler()}>
+                        <ListItemIcon >
+                            <Logout fontSize="small" />
+                        </ListItemIcon>
+                        Logout
+                    </MenuItem>
+                )}
+
             </Menu>
         </React.Fragment>
     );

@@ -32,9 +32,9 @@ export default function ButtonAppBar() {
         return state['login']
     })
 
-    let { user } = userInfo
 
-    console.log(user);
+
+
 
 
 

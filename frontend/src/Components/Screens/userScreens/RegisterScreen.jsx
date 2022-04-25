@@ -15,10 +15,7 @@ justify-content:space-around;
 @media (max-width: 768px) {
   flex-direction: column;
 
-}
-
-
-`
+}`
 
 function RegisterScreen() {
 
@@ -38,10 +35,6 @@ function RegisterScreen() {
   useEffect(() => {
 
   }, [dispatch])
-
-
-
-
 
 
   return (
@@ -172,6 +165,7 @@ function RegisterScreen() {
         {/* <Grid item xs={6}>
             <iframe src="https://embed.lottiefiles.com/animation/92808"></iframe>
         </Grid> */}
+
       </Grid>
     </Container>
   )

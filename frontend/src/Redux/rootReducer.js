@@ -1,19 +1,11 @@
-import { combineReducers } from '@reduxjs/toolkit'
-import getAllCarsReducer from './Features/carFeatures/getAllCarsFeature'
-//user reducers
-import loginReducer from './Features/userFeatures/userLoginFeatures'
-import registerReducer from './Features/userFeatures/userRegisterFeature'
-import updateReducer from './Features/userFeatures/userUpdateFeature'
+import userLoginReducer from './Features/userFeatures/userLoginFeatures'
 
-const rootReducer = combineReducers({
-  //user reducers
-  login: loginReducer,
-  register: registerReducer,
-  update: updateReducer,
+// const rootReducer = combineReducers({
+//   logedInUser: userLoginReducer,
+// })
 
-  //car reducers
-  //carDetails: carUploadReducer,
-  getAllCars: getAllCarsReducer,
-})
+const rootReducer = {
+  logedInUser: userLoginReducer,
+}
 
 export default rootReducer
