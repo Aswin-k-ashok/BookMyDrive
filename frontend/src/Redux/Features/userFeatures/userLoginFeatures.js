@@ -37,6 +37,25 @@ export const getUserProfile = createAsyncThunk(
   }
 )
 
+export const userUpdate = createAsyncThunk(
+  'user/update',
+  async (values, getState) => {
+    const user = JSON.parse(localStorage.getItem('user'))
+
+    console.log(user.token)
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${user.token}`,
+      },
+    }
+
+    let response = await axios.put('/api/users/profile', values, config)
+    return response.data
+  }
+)
+
 export const userLogout = () => {
   localStorage.removeItem('user')
   stateReset()
@@ -59,8 +78,6 @@ const userLoginSlice = createSlice({
       })
 
       .addCase(userLogin.fulfilled, (state, action) => {
-        console.log(state)
-        console.log(action)
         state.loading = false
         state.user = action.payload
         localStorage.setItem('user', JSON.stringify(state.user))
@@ -69,6 +86,18 @@ const userLoginSlice = createSlice({
       .addCase(userLogin.rejected, (state, action) => {
         state.loading = false
         state.error = 'invalid username / password'
+      })
+      .addCase(userUpdate.pending, (state, action) => {
+        state.loading = true
+      })
+      .addCase(userUpdate.fulfilled, (state, action) => {
+        state.loading = false
+        state.user = action.payload
+        localStorage.setItem('user', JSON.stringify(state.user))
+      })
+      .addCase(userUpdate.rejected, (state, action) => {
+        state.loading = false
+        state.error = 'error'
       })
   },
 })

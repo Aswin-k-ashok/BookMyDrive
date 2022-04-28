@@ -26,30 +26,12 @@ export default function AccountMenu() {
 
     const { user, loading, error } = userData
 
-    // const { user } = useSelector((state) => state.logedInUser)
 
-    // const { user } = JSON.parse(localStorage.getItem('user'))
 
     console.log(user)
 
-    // console.log(user, "api call-----");
-
-    // // let { loading, user, error } = userData
 
 
-
-    // console.log(user)
-    // let logo = ''
-
-    // if (user) {
-
-    //     logo = user.firstName
-    // } else {
-    //     logo = 'B'
-    // }
-
-
-    // console.log(logo)
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);

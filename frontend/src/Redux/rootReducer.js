@@ -1,11 +1,9 @@
 import userLoginReducer from './Features/userFeatures/userLoginFeatures'
-
-// const rootReducer = combineReducers({
-//   logedInUser: userLoginReducer,
-// })
+// import userUpdateReducer from './Features/userFeatures/userUpdateFeature'
 
 const rootReducer = {
   logedInUser: userLoginReducer,
+  // logedInUser: userUpdateReducer,
 }
 
 export default rootReducer

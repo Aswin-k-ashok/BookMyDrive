@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { useSelector } from 'react-redux'
 import axios from 'axios'
 
 const initialState = {
@@ -37,8 +38,6 @@ const userUpdateSlice = createSlice({
       .addCase(userUpdate.fulfilled, (state, action) => {
         state.loading = false
         state.user = action.payload
-
-        localStorage.setItem('user', JSON.stringify(state.user))
       })
       .addCase(userUpdate.rejected, (state, action) => {
         state.loading = false

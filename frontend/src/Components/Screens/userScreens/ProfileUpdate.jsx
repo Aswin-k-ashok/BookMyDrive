@@ -3,7 +3,7 @@ import { makeStyles } from '@mui/styles';
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { userUpdate } from '../../../Redux/Features/userFeatures/userUpdateFeature';
+import { userUpdate } from '../../../Redux/Features/userFeatures/userLoginFeatures';
 
 
 const styles = makeStyles({
@@ -29,7 +29,7 @@ function ProfileUpdate() {
     const classes = styles()
 
     let userData = useSelector((state) => {
-        return state['login']
+        return state['logedInUser']
     })
 
     let { loading, user, error } = userData
