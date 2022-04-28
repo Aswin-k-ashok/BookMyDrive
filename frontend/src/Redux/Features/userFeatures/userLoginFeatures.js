@@ -3,33 +3,55 @@ import axios from 'axios'
 
 const initialState = {
   loading: false,
-  user: {},
+  user: localStorage.getItem('user')
+    ? JSON.parse(localStorage.getItem('user'))
+    : null,
   error: null,
 }
 
-const logoutState = {
-  loading: false,
-  user: {
-    firstName: 'GUST',
-    isAuth: false,
-  },
-  error: null,
-}
+export const userLogin = createAsyncThunk(
+  'users/userlogin/',
+  async (values) => {
+    console.log(values)
+    let response = await axios.post('/api/users/login', values)
+    return response.data
+  }
+)
 
-export const userLogin = createAsyncThunk('users/userlogin', async (values) => {
-  let response = await axios.post('/api/users/login', values)
-  return response.data
-})
+export const getUserProfile = createAsyncThunk(
+  'user/getuserdata',
+  async (values, getState) => {
+    const user = JSON.parse(localStorage.getItem('user'))
+
+    console.log(user.token)
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${user.token}`,
+      },
+    }
+
+    let response = await axios.get('/api/users/profile', values, config)
+    return response.data
+  }
+)
 
 export const userLogout = () => {
   localStorage.removeItem('user')
-  localStorage.setItem('user', JSON.stringify(logoutState))
+  stateReset()
 }
 
 const userLoginSlice = createSlice({
   name: 'login',
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    stateReset: (state) => {
+      state.loading = initialState.loading
+      state.user = initialState.user
+      state.error = initialState.error
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(userLogin.pending, (state, action) => {
@@ -37,17 +59,20 @@ const userLoginSlice = createSlice({
       })
 
       .addCase(userLogin.fulfilled, (state, action) => {
+        console.log(state)
+        console.log(action)
         state.loading = false
         state.user = action.payload
-
         localStorage.setItem('user', JSON.stringify(state.user))
       })
 
       .addCase(userLogin.rejected, (state, action) => {
         state.loading = false
-        state.error = 'Error'
+        state.error = 'invalid username / password'
       })
   },
 })
+
+export const { stateReset } = userLoginSlice.actions
 
 export default userLoginSlice.reducer

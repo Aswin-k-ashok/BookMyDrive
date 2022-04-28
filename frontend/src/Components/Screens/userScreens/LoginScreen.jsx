@@ -4,7 +4,9 @@ import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { userLogin } from '../../../Redux/Features/userFeatures/userLoginFeatures'
 import './userScreen.css'
+
 
 const useStyles = makeStyles({
     loginBackGround: {
@@ -27,27 +29,27 @@ function LoginScreen() {
 
 
     // const { user } = JSON.parse(localStorage.getItem('user'))
-    const userLogin = useSelector((state) => state.logedInUser)
+    // const userData = useSelector((state) => state.logedInUser)
 
-    const { user, error, loading } = userLogin
-
+    const { user, error, loading } = userData
 
     const { handleSubmit, register, formState: { errors } } = useForm();
 
 
     const onSubmit = values => {
-
+        console.log(values)
         dispatch(userLogin(values))
+
     }
 
     useEffect(() => {
         if (user) {
             navigate('/')
         }
-    }, [navigate])
+    }, [user])
 
 
-
+    console.log(error)
 
 
 
@@ -76,6 +78,7 @@ function LoginScreen() {
                                 })} />
                                 <Button type="submit" color='' className='btn-13' variant='' >Submit</Button>
                                 <Typography variant='subtitle1'>need an account ? </Typography><Link to='/register' style={{ textDecoration: 'none', color: 'primary' }}>register now</Link>
+                                {error && <p>{error}</p>}
                             </form>
                         </Paper>
                     </Grid>
@@ -83,7 +86,6 @@ function LoginScreen() {
                     <iframe src="https://embed.lottiefiles.com/animation/92808"></iframe>
                 </Grid> */}
 
-                    {error && <p>{error}</p>}
 
                 </Grid>
 
