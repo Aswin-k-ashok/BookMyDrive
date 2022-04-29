@@ -1,10 +1,13 @@
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
+import { Modal } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { userUpdate } from '../../../Redux/Features/userFeatures/userLoginFeatures';
+import DpUpload from './DpUpload';
+
 
 const styles = makeStyles({
     formStyle: {
@@ -28,6 +31,11 @@ function ProfileUpdate() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const classes = styles()
+
+    const [open, setOpen] = useState(false)
+
+    const handleOpen = () => setOpen(true)
+    const handleClose = () => setOpen(false)
 
     let userData = useSelector((state) => {
         return state['logedInUser']
@@ -55,8 +63,15 @@ function ProfileUpdate() {
     return (
         <div>
             <form onSubmit={handleSubmit(onSubmit)} className={classes.formStyle}>
-                <AddPhotoAlternateIcon style={{ fontSize: '8em', color: "black" }} onClick={() => navigate('/uploaddp')} />
-
+                <AddPhotoAlternateIcon style={{ fontSize: '8em', color: "black" }} onClick={handleOpen} />
+                <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="modal-modal-title"
+                    aria-describedby="modal-modal-description"
+                >
+                    <DpUpload />
+                </Modal>
                 <input type="text" defaultValue={user.firstName} {...register(user.firstName, { required: true, maxLength: 80 })} className={classes.formStyleInput} />
                 <input type="text" defaultValue={user.lastName} {...register("lastName", { required: true, maxLength: 100 })} className={classes.formStyleInput} />
                 <input type="text" defaultValue={user.email} {...register("email", { required: true, pattern: /^\S+@\S+$/i })} className={classes.formStyleInput} />

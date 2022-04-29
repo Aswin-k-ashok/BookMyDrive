@@ -27,11 +27,6 @@ export default function AccountMenu() {
     const { user, loading, error } = userData
 
 
-
-
-
-
-
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -49,14 +44,17 @@ export default function AccountMenu() {
         console.log('user logged out')
     }
 
-    // useEffect(() => {
-    //     if (!user) {
-    //         navigate('/login')
-    //         dispatch(stateReset())
+    let logo = 'G'
+    let nameArrayForLogo = ''
 
 
-    //     }
-    // }, [navigate, user, userData])
+    if (user) {
+
+        nameArrayForLogo = user.firstName.split('');
+
+        logo = nameArrayForLogo[0]
+    }
+
 
 
 
@@ -66,28 +64,35 @@ export default function AccountMenu() {
     return (
         <>
             {user ? (<React.Fragment>
-                <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
-                    {/* <Typography sx={{ minWidth: 100 }}>Contact</Typography>
-                <Typography sx={{ minWidth: 100 }}>Profile</Typography> */}
+                <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }} >
                     <Tooltip title="User Home">
-                        <IconButton
-                            onClick={handleClick}
-                            size="small"
-                            sx={{ ml: 2 }}
-                            aria-controls={open ? 'account-menu' : undefined}
-                            aria-haspopup="true"
-                            aria-expanded={open ? 'true' : undefined}
-                        >
-                            <Avatar sx={{ width: 52, height: 52 }}>
-                                {user.profilePic == null ? <></> : (
+                        <Box style={{ backgroundColor: "#D5E5FC", color: '#2B468B', width: "15em", display: "flex", justifyContent: "end", borderRadius: "42px" }}>
 
-                                    <img src={user.profilePic} alt="profilePicture" style={{ width: "100%" }} />
-                                )}
-                            </Avatar>
-                        </IconButton>
+                            <div style={{ display: "flex", flexDirection: "column", justifyContent: 'space-around', alignItems: "flex-start" }}>
+                                <p style={{ margin: "0", padding: "0" }}>{user.firstName} {user.lastName}</p>
+                                <p style={{ margin: "0", padding: "0" }}>{user.email}</p>
+                            </div>
+
+                            <IconButton
+                                onClick={handleClick}
+                                size="small"
+                                sx={{ ml: 2 }}
+                                aria-controls={open ? 'account-menu' : undefined}
+                                aria-haspopup="true"
+                                aria-expanded={open ? 'true' : undefined}
+                            >
+                                <Avatar sx={{ width: 52, height: 52 }}>
+                                    {user.profilePic == null ? <>{logo}</> : (
+
+                                        <img src={user.profilePic} alt="profilePicture" style={{ width: "100%" }} />
+                                    )}
+                                </Avatar>
+                            </IconButton>
+                        </Box>
                     </Tooltip>
                 </Box>
                 <Menu
+                    style={{ borderRadius: "10px" }}
                     anchorEl={anchorEl}
                     id="account-menu"
                     open={open}

@@ -47,14 +47,31 @@ function DpUpload() {
     }, [])
 
     return (
-        <Container>
+        <Container style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: 400,
+            bgcolor: 'background.paper',
+            backgroundColor: "mintcream",
+            border: '1px solid #000',
+            borderRadius: "20px",
+            padding: "6em",
+            boxShadow: 24,
+            display: 'flex',
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "2em",
+            p: 4,
+        }}>
 
 
+            <label>Upload your Profile picture</label>
             <label htmlFor="icon-button-file">
                 <Input accept="image/*" id="icon-button-file" type="file" onChange={(event) => { setImageUpload(event.target.files[0]) }} />
-                <IconButton color="primary" aria-label="upload picture" component="span"
-                >
-                    <PhotoCamera />
+                <IconButton color="primary" aria-label="upload picture" fontSize='large' component="span">
+                    <PhotoCamera fontSize='large' />
                 </IconButton>
             </label>
 
@@ -65,7 +82,7 @@ function DpUpload() {
                 </Button>
             </label>
 
-        </Container>
+        </Container >
     )
 }
 
