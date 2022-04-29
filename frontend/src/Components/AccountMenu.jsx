@@ -69,7 +69,7 @@ export default function AccountMenu() {
                 <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
                     {/* <Typography sx={{ minWidth: 100 }}>Contact</Typography>
                 <Typography sx={{ minWidth: 100 }}>Profile</Typography> */}
-                    <Tooltip title="Account settings">
+                    <Tooltip title="User Home">
                         <IconButton
                             onClick={handleClick}
                             size="small"
@@ -78,7 +78,12 @@ export default function AccountMenu() {
                             aria-haspopup="true"
                             aria-expanded={open ? 'true' : undefined}
                         >
-                            <Avatar sx={{ width: 32, height: 32 }}></Avatar>
+                            <Avatar sx={{ width: 52, height: 52 }}>
+                                {user.profilePic == null ? <></> : (
+
+                                    <img src={user.profilePic} alt="profilePicture" style={{ width: "100%" }} />
+                                )}
+                            </Avatar>
                         </IconButton>
                     </Tooltip>
                 </Box>
