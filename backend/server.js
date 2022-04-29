@@ -1,11 +1,13 @@
 import dotenv from 'dotenv'
 import express from 'express'
+import morgan from 'morgan'
 import connectDB from './config/db.js'
 import adminRoutes from './routes/adminRoutes.js'
 import carRoutes from './routes/carRoutes.js'
 import ownerRoutes from './routes/ownerRoutes.js'
 import rentRoutes from './routes/rentRoutes.js'
 import userRoutes from './routes/userRoutes.js'
+
 dotenv.config() // need to install dot env <npm install node env> use dot env config to access all the environment variables in the .env files in the backend folder
 
 connectDB() // connectDB functionality from backend/config/db.js
@@ -13,6 +15,7 @@ connectDB() // connectDB functionality from backend/config/db.js
 const app = express()
 
 app.use(express.json())
+app.use(morgan())
 
 app.get('/', (req, res) => {
   res.send('api is live....')

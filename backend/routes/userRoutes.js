@@ -5,6 +5,7 @@ import {
   getUsers,
   registerUser,
   updateUserProfile,
+  updateUserProfilePicture,
 } from '../controller/userController.js'
 import { protect } from '../middlewares/authMiddlewares.js'
 const router = express.Router()
@@ -15,4 +16,6 @@ router
   .route('/profile')
   .get(protect, getUserProfile)
   .put(protect, updateUserProfile)
+router.route('/profilepic').post(protect, updateUserProfilePicture)
+
 export default router

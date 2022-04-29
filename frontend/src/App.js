@@ -16,6 +16,7 @@ import Offer from './Components/Screens/ownerScreens/Offer'
 import Reports from './Components/Screens/ownerScreens/Reports'
 import Trips from './Components/Screens/ownerScreens/Trips'
 import CarDetails from './Components/Screens/userScreens/CarDetails'
+import DpUpload from './Components/Screens/userScreens/DpUpload'
 import HomeScreen from './Components/Screens/userScreens/HomeScreen'
 import LoginScreen from './Components/Screens/userScreens/LoginScreen'
 import RegisterScreen from './Components/Screens/userScreens/RegisterScreen'
@@ -39,6 +40,7 @@ function App() {
         <Route path='/upload' element={<ImageUpload />} />
         <Route path='/carinfo' element={<CarDetails />} />
         <Route path='/admin' element={<AdminLoginScreen />} />
+        <Route path='/uploaddp' element={<DpUpload />} />
         <Route path='/' element={<HomeScreen />} />
         {/* owner screens */}
         <Route path='/addCar' element={<AddCar />} />

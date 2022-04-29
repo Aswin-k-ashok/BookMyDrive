@@ -28,7 +28,6 @@ export default function AccountMenu() {
 
 
 
-    console.log(user)
 
 
 
@@ -79,7 +78,7 @@ export default function AccountMenu() {
                             aria-haspopup="true"
                             aria-expanded={open ? 'true' : undefined}
                         >
-                            <Avatar sx={{ width: 32, height: 32 }}>logo</Avatar>
+                            <Avatar sx={{ width: 32, height: 32 }}></Avatar>
                         </IconButton>
                     </Tooltip>
                 </Box>
@@ -92,7 +91,7 @@ export default function AccountMenu() {
                     PaperProps={{
                         elevation: 0,
                         sx: {
-                            overflow: 'visible',
+                            // overflow: 'visible',
                             filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
                             mt: 1.5,
                             '& .MuiAvatar-root': {
@@ -176,7 +175,7 @@ export default function AccountMenu() {
                     PaperProps={{
                         elevation: 0,
                         sx: {
-                            overflow: 'visible',
+                            // overflow: 'visible',
                             filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
                             mt: 1.5,
                             '& .MuiAvatar-root': {

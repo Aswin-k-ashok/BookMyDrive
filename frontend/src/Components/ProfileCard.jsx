@@ -1,7 +1,7 @@
-import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate'
 import { Grid } from '@mui/material'
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
 const CardStyle = styled.div`
@@ -31,6 +31,8 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
 function ProfileCard() {
 
     const dispatch = useDispatch()
+    const navigate = useNavigate()
+
 
     const userData = useSelector((state) => {
         return state['logedInUser']
@@ -39,6 +41,8 @@ function ProfileCard() {
 
 
     let { loading, user, error } = userData
+
+    console.log(user)
 
     const params = { make: 'Volvo' }
 
@@ -73,8 +77,8 @@ function ProfileCard() {
                         <Grid item md={4}>
 
 
-                            <img src='' />
-                            <AddPhotoAlternateIcon style={{ fontSize: '8em' }} />
+                            <img src={user.profilePic} style={{ width: '10em', height: '10em', borderRadius: '50px' }} />
+
                         </Grid>
                     </Grid>
 

@@ -8,7 +8,6 @@ import * as React from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import AccountMenu from './AccountMenu';
-import { COLORS } from './customColors';
 
 
 
@@ -41,7 +40,7 @@ export default function ButtonAppBar() {
     return (
         <Box sx={{ flexGrow: 1, marginBottom: '4em' }}>
 
-            <AppBar position="static" style={{ position: 'fixed', top: '0', backgroundColor: COLORS.primaryColor, zIndex: '500', }}>
+            <AppBar position="static" style={{ position: 'fixed', top: '0', backgroundColor: "white", color: "black", zIndex: '500', boxShadow: 'none' }}>
                 <Toolbar>
                     <Button
                         size="large"
@@ -51,10 +50,7 @@ export default function ButtonAppBar() {
                         sx={{ mr: 1 }}
                     >
                     </Button>
-                    {/* <Typography variant='h4' component='p' style={{ marginRight: '10%', marginTop: '2%', marginBottom: '2%', backgroundColor: COLORS.backgroundColor, color: COLORS.myWhite, borderRadius: '50px', padding: '10px' }}>
-                        bmd
-                    </Typography> */}
-                    <Typography variant="button" component="div" sx={{ flexGrow: 1, fontSize: '20px', fontWeight: '900' }} onClick={() => navigate('/')}>
+                    <Typography variant="" component="div" sx={{ flexGrow: 1, fontSize: '20px', fontWeight: '900' }} onClick={() => navigate('/')}>
                         Book My Drive
                     </Typography>
                     <AccountMenu className={classes.acountMenuStyle} />

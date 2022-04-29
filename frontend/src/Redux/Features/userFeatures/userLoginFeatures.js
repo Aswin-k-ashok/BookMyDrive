@@ -56,6 +56,28 @@ export const userUpdate = createAsyncThunk(
   }
 )
 
+export const userProfilePicUpdate = createAsyncThunk(
+  'user/updatedp',
+  async (values) => {
+    console.log(values)
+    const user = JSON.parse(localStorage.getItem('user'))
+    console.log(user.token)
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${user.token}`,
+      },
+    }
+
+    let response = await axios.post(
+      '/api/users/profilepic',
+      { link: values },
+      config
+    )
+    return response.data
+  }
+)
+
 export const userLogout = () => {
   localStorage.removeItem('user')
   stateReset()
@@ -73,21 +95,22 @@ const userLoginSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(userLogin.pending, (state, action) => {
+      //user login
+      .addCase(userLogin.pending, (state) => {
         state.loading = true
       })
-
       .addCase(userLogin.fulfilled, (state, action) => {
         state.loading = false
         state.user = action.payload
         localStorage.setItem('user', JSON.stringify(state.user))
       })
-
-      .addCase(userLogin.rejected, (state, action) => {
+      .addCase(userLogin.rejected, (state) => {
         state.loading = false
         state.error = 'invalid username / password'
       })
-      .addCase(userUpdate.pending, (state, action) => {
+
+      //user update
+      .addCase(userUpdate.pending, (state) => {
         state.loading = true
       })
       .addCase(userUpdate.fulfilled, (state, action) => {
@@ -95,9 +118,23 @@ const userLoginSlice = createSlice({
         state.user = action.payload
         localStorage.setItem('user', JSON.stringify(state.user))
       })
-      .addCase(userUpdate.rejected, (state, action) => {
+      .addCase(userUpdate.rejected, (state) => {
         state.loading = false
         state.error = 'error'
+      })
+
+      //user profilepic update
+      .addCase(userProfilePicUpdate.pending, (state) => {
+        state.loading = true
+      })
+      .addCase(userProfilePicUpdate.fulfilled, (state, action) => {
+        state.loading = false
+        state.user = action.payload
+        localStorage.setItem('user', JSON.stringify(state.user))
+      })
+      .addCase(userProfilePicUpdate.rejected, (state) => {
+        state.loading = false
+        state.error = 'someting went wrong'
       })
   },
 })

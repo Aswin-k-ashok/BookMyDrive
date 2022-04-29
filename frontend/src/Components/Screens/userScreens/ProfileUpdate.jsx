@@ -3,8 +3,8 @@ import { makeStyles } from '@mui/styles';
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { userUpdate } from '../../../Redux/Features/userFeatures/userLoginFeatures';
-
 
 const styles = makeStyles({
     formStyle: {
@@ -26,6 +26,7 @@ const styles = makeStyles({
 function ProfileUpdate() {
 
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const classes = styles()
 
     let userData = useSelector((state) => {
@@ -54,7 +55,7 @@ function ProfileUpdate() {
     return (
         <div>
             <form onSubmit={handleSubmit(onSubmit)} className={classes.formStyle}>
-                <AddPhotoAlternateIcon style={{ fontSize: '8em' }} />
+                <AddPhotoAlternateIcon style={{ fontSize: '8em', color: "black" }} onClick={() => navigate('/uploaddp')} />
 
                 <input type="text" defaultValue={user.firstName} {...register(user.firstName, { required: true, maxLength: 80 })} className={classes.formStyleInput} />
                 <input type="text" defaultValue={user.lastName} {...register("lastName", { required: true, maxLength: 100 })} className={classes.formStyleInput} />

@@ -38,28 +38,6 @@ const authUser = asyncHandler(async (req, res) => {
   }
 })
 
-// @desc admin login
-// @ reouter POST /api/admin/login
-// @access private
-
-// const adminLogin = asyncHandler(async (req, res) => {
-//   const { email, password } = req.body
-//   const pass = process.env.ADMINPASS
-//   const admin = await Admin.findOne({ email })
-//   if (admin && password === pass) {
-//     res.json({
-//       message: 'logged is as admin',
-//     })
-//   } else {
-//     res.status(404)
-//     throw new Error('un authorized')
-//   }
-// })
-
-//@desc Get user profile
-//@route GET /api/users/profile
-//@access private
-
 const getUserProfile = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user._id)
 
@@ -152,11 +130,43 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   }
 })
 
+// @desc update user profile picture
+// @route PUT/api/users/profilepicture
+// @access private
+
+const updateUserProfilePicture = asyncHandler(async (req, res) => {
+  // console.log(req.body.values)
+  const { link } = req.body
+  const user = await User.findById(req.user._id)
+  if (user) {
+    user.profilePic = link
+
+    if (user) {
+      const updateUser = await user.save()
+      res.json({
+        _id: updateUser._id,
+        firstName: updateUser.firstName,
+        lastName: updateUser.lastName,
+        email: updateUser.email,
+        phone: updateUser.phone,
+        isBlocked: updateUser.isBlocked,
+        isOwner: updateUser.isOwner,
+        profilePic: updateUser.profilePic,
+        token: generateToken(updateUser._id),
+        message: 'profile updated successfully',
+      })
+    }
+  } else {
+    res.status(404)
+    throw new Error('user not found')
+  }
+})
+
 export {
   getUsers,
   authUser,
   getUserProfile,
   registerUser,
-  // adminLogin,
   updateUserProfile,
+  updateUserProfilePicture,
 }
