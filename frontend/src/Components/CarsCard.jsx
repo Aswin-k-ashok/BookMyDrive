@@ -56,7 +56,7 @@ function CarsCard() {
                                 </CardContent>
                                 <CardActions>
                                     {/* <Button size="small">Share</Button> */}
-                                    <Button size="large" variant='outlined' color='success' marginX={5} onClick={() => navigate('/carinfo')}>Book</Button>
+                                    <Button size="large" variant='outlined' color='success' marginX={5} onClick={() => navigate(`/carDetails/${car._id}`)}>Book</Button>
                                 </CardActions>
                             </Card>
                         </Grid>

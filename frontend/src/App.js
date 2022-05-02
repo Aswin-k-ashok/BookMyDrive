@@ -39,7 +39,7 @@ function App() {
         <Route path='/register' element={<RegisterScreen />} />
         <Route path='/profile' element={<UserProfile />} />
         <Route path='/upload' element={<ImageUpload />} />
-        <Route path='/carinfo' element={<CarDetails />} />
+        <Route path='/carDetails/:id' element={<CarDetails />} />
         <Route path='/admin' element={<AdminLoginScreen />} />
         <Route path='/uploaddp' element={<DpUpload />} />
         <Route path='/' element={<HomeScreen />} />

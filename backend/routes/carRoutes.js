@@ -21,6 +21,6 @@ router
 
 router.route('/photo1/:id').put(updateCarPhoto)
 
-router.route('/userCars/:id').get(getUserCars)
+router.route('/usercars/:id').get(getUserCars)
 
 export default router

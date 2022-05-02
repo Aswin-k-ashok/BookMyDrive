@@ -9,13 +9,14 @@ const initialState = {
 
 export const userCarList = createAsyncThunk('car/usercar', async () => {
   const user = JSON.parse(localStorage.getItem('user'))
+  console.log(user._id)
   const config = {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Baarer ${user.token}`,
     },
   }
-  let response = await axios.get(`/api/cars/usercars/${user.id}`, config)
+  let response = await axios.get(`/api/cars/userCars/${user._id}`, config)
   return response.data
 })
 

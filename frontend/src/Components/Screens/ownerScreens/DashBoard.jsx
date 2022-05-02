@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
 import * as React from 'react';
 import CarUpload from './CarUpload';
+import MyCars from './MyCars';
 
 
 
@@ -81,10 +82,10 @@ export default function DashBoard() {
 
 
                     <TabPanel value={value} index={0}>
-                        <CarUpload />
+                        <MyCars />
                     </TabPanel>
                     <TabPanel value={value} index={1}>
-                        Item Two
+                        <CarUpload />
                     </TabPanel>
                     <TabPanel value={value} index={2}>
                         Item Three

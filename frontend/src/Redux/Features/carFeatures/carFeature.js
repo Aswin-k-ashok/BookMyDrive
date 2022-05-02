@@ -7,6 +7,12 @@ const initialState = {
   error: null,
 }
 
+export const getCarData = createAsyncThunk('car/getdata/:id', async (id) => {
+  console.log(id)
+  let response = await axios.get(`/api/cars/${id}`)
+  return response.data
+})
+
 export const carUploadAction = createAsyncThunk(
   'car/upload',
   console.log('going to upload'),
@@ -46,6 +52,18 @@ const carSlice = createSlice({
   initialState: initialState,
   extraReducers: (builder) => {
     builder
+
+      .addCase(getCarData.pending, (state) => {
+        state.loading = true
+      })
+      .addCase(getCarData.fulfilled, (state, action) => {
+        state.loading = false
+        state.carData = action.payload
+      })
+      .addCase(getCarData.rejected, (state) => {
+        state.loading = false
+        state.error = 'error'
+      })
       .addCase(carUploadAction.pending, (state) => {
         state.loading = true
       })
