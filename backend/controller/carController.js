@@ -3,7 +3,7 @@ import { v4 } from 'uuid'
 import Car from '../models/carModel.js'
 
 // @desc add a new car
-// @route POST/api/car
+// @route POST/api/cars
 // @access private
 const addCar = asyncHandler(async (req, res) => {
   const car = new Car({
@@ -30,10 +30,31 @@ const addCar = asyncHandler(async (req, res) => {
   res.status(201).json(addedCar)
 })
 
-// @desc update car
-// @route PUT/api/car/:id
-// @access private
+// @desc getAllCars
+// @route get/api/cars
+// @access public
 
+const getAllCars = asyncHandler(async (req, res) => {
+  const cars = await Car.find({})
+  res.json(cars)
+})
+
+// @desc get a Car
+// @route get/api/cars/:id
+// @access public
+const getCarById = asyncHandler(async (req, res) => {
+  const car = await Car.findById(req.params.id)
+  if (car) {
+    res.json(car)
+  } else {
+    res.status(404)
+    throw new Error('car not found')
+  }
+})
+
+// @desc update car
+// @route PUT/api/cars/:id
+// @access private
 const updateCar = asyncHandler(async (req, res) => {
   const {
     make,
@@ -84,33 +105,26 @@ const updateCar = asyncHandler(async (req, res) => {
   }
 })
 
-// @desc get a Car
-// @route get/api/car/:id
-// @access public
+// @desc update car photo
+// @route PUT/api/cars/photo1/:id
+// @router private owner
 
-const getCarById = asyncHandler(async (req, res) => {
+const updateCarPhoto = asyncHandler(async (req, res) => {
+  const { link } = req.body
   const car = await Car.findById(req.params.id)
   if (car) {
-    res.json(car)
-  } else {
-    res.status(404)
-    throw new Error('car not found')
+    car.image1 = link
+
+    if (car) {
+      const updatedCar = await car.save()
+      res.json(updatedCar)
+    }
   }
 })
 
-// @desc getAllCars
-// @route get/api/car
-// @access public
-
-const getAllCars = asyncHandler(async (req, res) => {
-  const cars = await Car.find({})
-  res.json(cars)
-})
-
 // @delete a car
-// @route delete/api/car/:id
+// @route delete/api/cars/:id
 // @access private
-
 const deleteCarById = asyncHandler(async (req, res) => {
   const car = await Car.findById(req.params.id)
   if (car) {
@@ -122,4 +136,25 @@ const deleteCarById = asyncHandler(async (req, res) => {
   }
 })
 
-export { addCar, updateCar, getCarById, getAllCars, deleteCarById }
+// @get user cars
+// @router get/api/usercars/:id
+// @access private
+const getUserCars = asyncHandler(async (req, res) => {
+  const cars = await Car.find({ user: req.params.id })
+  if (cars) {
+    res.json(cars)
+  } else {
+    res.status(404)
+    throw new Error('no cars found')
+  }
+})
+
+export {
+  addCar,
+  updateCar,
+  getCarById,
+  getAllCars,
+  deleteCarById,
+  updateCarPhoto,
+  getUserCars,
+}

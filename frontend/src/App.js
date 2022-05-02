@@ -9,6 +9,7 @@ import Report from './Components/Screens/adminScreen/Report'
 import UserManagement from './Components/Screens/adminScreen/UserManagement'
 // owner screens
 import AddCar from './Components/Screens/ownerScreens/AddCar'
+import DashBoard from './Components/Screens/ownerScreens/DashBoard'
 // userRoutes
 import ImageUpload from './Components/Screens/ownerScreens/ImageUpload'
 import MyCars from './Components/Screens/ownerScreens/MyCars'
@@ -47,7 +48,8 @@ function App() {
         <Route path='/myCar' element={<MyCars />} />
         <Route path='/offer' element={<Offer />} />
         <Route path='/Report' element={<Reports />} />
-        <Route part='/TripMangement' element={<Trips />} />
+        <Route path='/TripMangement' element={<Trips />} />
+        <Route path='/ownerDash' element={<DashBoard />} />
       </Routes>
     </Router>
   )

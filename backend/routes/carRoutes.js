@@ -4,7 +4,9 @@ import {
   deleteCarById,
   getAllCars,
   getCarById,
+  getUserCars,
   updateCar,
+  updateCarPhoto,
 } from '../controller/carController.js'
 import { protect } from '../middlewares/authMiddlewares.js'
 
@@ -16,5 +18,9 @@ router
   .put(protect, updateCar)
   .get(getCarById)
   .delete(protect, deleteCarById)
+
+router.route('/photo1/:id').put(updateCarPhoto)
+
+router.route('/userCars/:id').get(getUserCars)
 
 export default router

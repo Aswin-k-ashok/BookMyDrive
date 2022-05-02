@@ -24,7 +24,7 @@ const allCarsSlice = createSlice({
       })
       .addCase(getAllCars.fulfilled, (state, action) => {
         state.loading = false
-        state.getAllCars.cars = action.payload
+        state.cars = action.payload
         console.log(state.cars)
       })
       .addCase(userLogin.rejected, (state, action) => {

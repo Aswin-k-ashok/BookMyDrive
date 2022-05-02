@@ -6,36 +6,52 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import Cars from '../Cars.json';
+import { getAllCars } from '../Redux/Features/carFeatures/getAllCarsFeature';
 
 
 function CarsCard() {
+
+    const dispatch = useDispatch()
     const navigate = useNavigate()
+
+    const allCars = useSelector((state) => {
+        return state['allCars']
+    })
+
+    console.log(allCars.cars)
+    let cars = allCars.cars
+
+    useEffect(() => {
+        dispatch(getAllCars())
+    }, [])
+
+
     return (
         <Container>
             <h1>All Cars</h1>
             <Grid container spacing={1}>
 
-                {Cars.map(car => {
+                {cars.map(car => {
                     return (
                         <Grid item lg={4} sm={12} md={6} marginY={1}>
 
                             <Card sx={{ minHeight: 400 }}>
                                 <CardMedia
                                     component="img"
-                                    alt="green iguana"
+                                    alt={car.carModel}
                                     minHeight="240"
-
-                                    image={car.img}
+                                    image={car.image1}
                                     sx={{ maxHeight: 200 }}
                                 />
                                 <CardContent>
                                     <Typography gutterBottom variant="h5" component="div">
-                                        {car.manufacturer} {car.model}
+                                        {car.make} {car.carModel}
                                     </Typography>
                                     <Typography variant="body2" color="text.secondary">
-                                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit nisi distinctio tempora praesentium, dolorem nostrum a nesciunt id aspernatur dolor.
+                                        {car.description}
                                     </Typography>
                                 </CardContent>
                                 <CardActions>

@@ -1,9 +1,13 @@
+import carReducer from './Features/carFeatures/carFeature'
+import allCarsReducer from './Features/carFeatures/getAllCarsFeature'
+import userCarReducer from './Features/carFeatures/userCarFeature'
 import userLoginReducer from './Features/userFeatures/userLoginFeatures'
-// import userUpdateReducer from './Features/userFeatures/userUpdateFeature'
 
 const rootReducer = {
   logedInUser: userLoginReducer,
-  // logedInUser: userUpdateReducer,
+  car: carReducer,
+  allCars: allCarsReducer,
+  usersCars: userCarReducer,
 }
 
 export default rootReducer

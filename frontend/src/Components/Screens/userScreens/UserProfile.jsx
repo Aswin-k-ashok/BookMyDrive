@@ -9,6 +9,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import ProfileCard from '../../ProfileCard';
 import CarUpload from '../ownerScreens/CarUpload';
+import DashBoard from '../ownerScreens/DashBoard';
 import OwnerRegister from './OwnerRegister';
 import ProfileUpdate from './ProfileUpdate';
 
@@ -106,6 +107,9 @@ export default function BasicTabs() {
             <OwnerRegister />
           </TabPanel>
           <TabPanel value={value} index={4}>
+            <DashBoard />
+          </TabPanel>
+          <TabPanel value={value} index={5}>
             <CarUpload />
           </TabPanel>
         </Box>

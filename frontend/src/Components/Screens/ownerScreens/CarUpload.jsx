@@ -1,11 +1,8 @@
 import { Box, Button, MenuItem, TextField } from '@mui/material';
-import { getDownloadURL, listAll, ref, uploadBytes } from 'firebase/storage';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { v4 } from 'uuid';
-import { storage } from '../../../helpers/firebase';
-import { carUploadAction } from '../../../Redux/Features/carFeatures/uploadCarFeature';
+import { carUploadAction } from '../../../Redux/Features/carFeatures/carFeature';
 
 
 
@@ -15,35 +12,36 @@ function CarUpload() {
     const dispatch = useDispatch()
 
     const { register, handleSubmit, formState: { errors } } = useForm();
+
     const onSubmit = (data) => {
         console.log(data, "form data is here")
         dispatch(carUploadAction(data))
     };
     console.log(errors);
 
-    const [imageUpload, setImageUpload] = useState(null)
-    const [imageUrls, setImageUrls] = useState('')
-    const imageListRef = ref(storage, 'images/car/')
-    const uploadImage = () => {
-        if (imageUpload == null) return;
-        const imageRef = ref(storage, `images/car/${imageUpload.name + v4()}`)
+    // const [imageUpload, setImageUpload] = useState(null)
+    // const [imageUrls, setImageUrls] = useState('')
+    // const imageListRef = ref(storage, 'images/car/')
+    // const uploadImage = () => {
+    //     if (imageUpload == null) return;
+    //     const imageRef = ref(storage, `images/car/${imageUpload.name + v4()}`)
 
-        uploadBytes(imageRef, imageUpload).then((snapshot => {
-            getDownloadURL(snapshot.ref).then((url) => {
-                setImageUrls(url)
-            })
-        }))
-    }
+    //     uploadBytes(imageRef, imageUpload).then((snapshot => {
+    //         getDownloadURL(snapshot.ref).then((url) => {
+    //             setImageUrls(url)
+    //         })
+    //     }))
+    // }
 
-    useEffect(() => {
-        listAll(imageListRef).then((response) => {
-            response.items.forEach((item) => {
-                getDownloadURL(item).then((url) => {
-                    setImageUrls(url)
-                })
-            })
-        })
-    }, [])
+    // useEffect(() => {
+    //     listAll(imageListRef).then((response) => {
+    //         response.items.forEach((item) => {
+    //             getDownloadURL(item).then((url) => {
+    //                 setImageUrls(url)
+    //             })
+    //         })
+    //     })
+    // }, [])
 
     return (
         <div>
@@ -96,13 +94,13 @@ function CarUpload() {
                     <TextField id='filled-basic' helperText='enter details' style={{ margin: '1em' }} label='Reg no' type="text"  {...register("regNo", { required: true, maxLength: 12 })} />
 
 
-                    <TextField type='file' onChange={(event) => {
+                    {/* <TextField type='file' onChange={(event) => {
                         console.log(event, "printing event")
                         setImageUpload(event.target.file)
                     }} />
-                    <button onClick={uploadImage}>upload image</button>
-                    {imageUrls ? <img src={imageUrls} style={{ width: '100%', height: 'auto' }} /> : null}
-                    {/* <TextField id='filled=basic' helperText='enter details' type='text'  {...register('image')} /> */}
+                    <button onClick={uploadImage}>upload image</button> */}
+                    {/* {imageUrls ? <img src={imageUrls} style={{ width: '100%', height: 'auto' }} /> : null} */}
+
                 </div>
                 <Box display='flex' justifyContent='center'>
                     <Button type="submit" className='btn-1' justifyContent="center"
