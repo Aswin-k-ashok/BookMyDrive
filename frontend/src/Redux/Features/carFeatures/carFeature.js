@@ -13,22 +13,20 @@ export const getCarData = createAsyncThunk('car/getdata/:id', async (id) => {
   return response.data
 })
 
-export const carUploadAction = createAsyncThunk(
-  'car/upload',
-  console.log('going to upload'),
-  async (values) => {
-    const user = JSON.parse(localStorage.getItem('user'))
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${user.token}`,
-      },
-    }
-    let response = await axios.post('/api/cars', values, config)
-    console.log(values, config, 'from upload car feature')
-    return response.data
+export const carUpload = createAsyncThunk('car/upload', async () => {
+  const { token, _id: id } = JSON.parse(localStorage.getItem('user'))
+  console.log(token, id)
+
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
   }
-)
+  let response = await axios.post('/api/cars', config)
+  console.log(response)
+  return response.data
+})
 
 export const carPhotoUploadAction = createAsyncThunk(
   'car/photo/upload',
@@ -64,14 +62,14 @@ const carSlice = createSlice({
         state.loading = false
         state.error = 'error'
       })
-      .addCase(carUploadAction.pending, (state) => {
+      .addCase(carUpload.pending, (state) => {
         state.loading = true
       })
-      .addCase(carUploadAction.fulfilled, (state, action) => {
+      .addCase(carUpload.fulfilled, (state, action) => {
         state.loading = false
         state.carData = action.payload
       })
-      .addCase(carUploadAction.rejected, (state) => {
+      .addCase(carUpload.rejected, (state) => {
         state.loading = false
         state.error = 'error'
       })

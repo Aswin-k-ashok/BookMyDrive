@@ -7,6 +7,10 @@ import { useDispatch } from 'react-redux'
 import { v4 } from 'uuid'
 import { storage } from '../../../helpers/firebase'
 import { userProfilePicUpdate } from '../../../Redux/Features/userFeatures/userLoginFeatures'
+import { openSnackbarAction } from '../../../Redux/uiFeatures/snackbarFeature'
+import CustomSnackbar from '../../CustomSnackbar'
+
+
 const Input = styled('input')({
     display: 'none'
 })
@@ -15,7 +19,6 @@ const Input = styled('input')({
 function DpUpload() {
 
     const dispatch = useDispatch()
-
     const [imageUpload, setImageUpload] = useState(null)
     const [imageUrls, setImageUrls] = useState([])
     const imageListRef = ref(storage, 'images/dp')
@@ -23,17 +26,26 @@ function DpUpload() {
 
 
     const uploadImage = () => {
-        if (imageUpload == null) return;
-        const imageRef = ref(storage, `images/dp/${imageUpload.name + v4()}`)
-        uploadBytes(imageRef, imageUpload).then((snapshot) => {
-            alert('image uploaded')
-            getDownloadURL(snapshot.ref).then((url) => {
-                console.log(url);
-                dispatch(userProfilePicUpdate(url))
-                setImageUrls((prev) => [...prev, url]);
-                // console.log(imageUrls)
+        if (imageUpload == null) {
+            dispatch(openSnackbarAction({ severity: 'warning', snackmessage: 'no image selected' }))
+            return (
+                < CustomSnackbar />
+            )
+        }
+
+
+        else {
+            const imageRef = ref(storage, `images/dp/${imageUpload.name + v4()}`)
+            uploadBytes(imageRef, imageUpload).then((snapshot) => {
+                dispatch(openSnackbarAction({ severity: "success", snackmessage: "Updated profile picture" }))
+                getDownloadURL(snapshot.ref).then((url) => {
+                    console.log(url);
+                    dispatch(userProfilePicUpdate(url))
+                    setImageUrls((prev) => [...prev, url]);
+                    // console.log(imageUrls)
+                })
             })
-        })
+        }
     }
 
     useEffect(() => {

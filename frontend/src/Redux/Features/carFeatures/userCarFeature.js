@@ -9,7 +9,6 @@ const initialState = {
 
 export const userCarList = createAsyncThunk('car/usercar', async () => {
   const user = JSON.parse(localStorage.getItem('user'))
-  console.log(user._id)
   const config = {
     headers: {
       'Content-Type': 'application/json',

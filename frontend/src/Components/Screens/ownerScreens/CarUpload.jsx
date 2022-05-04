@@ -2,7 +2,7 @@ import { Box, Button, MenuItem, TextField } from '@mui/material';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { carUploadAction } from '../../../Redux/Features/carFeatures/carFeature';
+import { carUpload } from '../../../Redux/Features/carFeatures/carFeature';
 
 
 
@@ -15,7 +15,7 @@ function CarUpload() {
 
     const onSubmit = (data) => {
         console.log(data, "form data is here")
-        dispatch(carUploadAction(data))
+        dispatch(carUpload(data))
     };
     console.log(errors);
 

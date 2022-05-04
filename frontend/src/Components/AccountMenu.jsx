@@ -68,9 +68,9 @@ export default function AccountMenu() {
                     <Tooltip title="User Home">
                         <Box style={{ backgroundColor: "#D5E5FC", color: '#2B468B', width: "max-content", display: "flex", justifyContent: "space-between", borderRadius: "42px" }}>
 
-                            <div style={{ display: "flex", flexDirection: "column", justifyContent: 'space-around', alignItems: "flex-start" }}>
-                                <p style={{ margin: "0", padding: "0", marginLeft: '1em' }}>{user.firstName} {user.lastName}</p>
-                                <p style={{ margin: "0", padding: "0", fontSize: "10px", marginLeft: "1em" }}>{user.email}</p>
+                            <div style={{ display: "flex", flexDirection: "column", justifyContent: 'center', alignItems: "flex-start", paddingLeft: '1em' }}>
+                                <p style={{ margin: "0px", padding: "0" }}>{user.firstName} {user.lastName}</p>
+                                <p style={{ margin: "0px", padding: "0", fontSize: "10px", }}>{user.email}</p>
                             </div>
 
                             <IconButton

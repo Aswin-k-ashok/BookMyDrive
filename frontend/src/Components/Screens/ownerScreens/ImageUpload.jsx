@@ -8,8 +8,12 @@ function ImageUpload() {
     const [imageUpload, setImageUpload] = useState(null)
     const [imageUrls, setImageUrls] = useState([])
     const imageListRef = ref(storage, 'images/')
+
+
     const uploadImage = () => {
-        if (imageUpload == null) return;
+        if (imageUpload == null)
+            console.log('add an image to upload')
+        return;
         const imageRef = ref(storage, `images/${imageUpload.name + v4()}`)
         uploadBytes(imageRef, imageUpload).then((snapshot) => {
             getDownloadURL(snapshot.ref).then((url) => {
