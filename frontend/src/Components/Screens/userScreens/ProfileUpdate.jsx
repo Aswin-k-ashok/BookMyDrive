@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { userUpdate } from '../../../Redux/Features/userFeatures/userLoginFeatures';
+import { openSnackbarAction } from '../../../Redux/uiFeatures/snackbarFeature';
 import DpUpload from './DpUpload';
 
 
@@ -47,7 +48,9 @@ function ProfileUpdate() {
 
     const onSubmit = data => {
 
-        dispatch(userUpdate(data))
+        dispatch(userUpdate(data)).then(
+            dispatch(openSnackbarAction({ severity: 'success', snackmessage: 'profile updated' }))
+        )
 
     }
 

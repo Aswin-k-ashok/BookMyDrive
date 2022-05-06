@@ -8,19 +8,19 @@ import Car from '../models/carModel.js'
 const addCar = asyncHandler(async (req, res) => {
   const car = new Car({
     user: req.user._id,
-    make: 'sample make',
-    carType: 'sample type',
-    carModel: 'sample model',
-    regNo: 'sample reg no' + v4(),
-    driveType: 'sample drive type',
+    make: 'Brand',
+    carType: 'Car_Type',
+    carModel: 'Model_name',
+    regNo: 'Register_no' + v4(),
+    driveType: 'drive type',
     noOfSeats: 0,
-    color: 'sample color',
-    fuel: 'sample fuel',
+    color: 'color',
+    fuel: 'fuel_type',
     noOfDoors: 0,
     makeYear: 0,
-    city: 'sample city',
+    city: 'city',
     rent: 0,
-    description: 'sample desc',
+    description: 'Description',
     image1: 'sample url',
     image2: 'sample url',
     image3: 'sample url',
@@ -70,10 +70,6 @@ const updateCar = asyncHandler(async (req, res) => {
     city,
     rent,
     description,
-    image1,
-    image2,
-    image3,
-    image4,
   } = req.body
 
   const car = await Car.findById(req.params.id)
@@ -110,15 +106,13 @@ const updateCar = asyncHandler(async (req, res) => {
 // @router private owner
 
 const updateCarPhoto = asyncHandler(async (req, res) => {
-  const { link } = req.body
+  const { imagelink } = req.body
+  console.log(imagelink)
   const car = await Car.findById(req.params.id)
   if (car) {
-    car.image1 = link
-
-    if (car) {
-      const updatedCar = await car.save()
-      res.json(updatedCar)
-    }
+    car.image1 = imagelink
+    await car.save()
+    res.json(car)
   }
 })
 

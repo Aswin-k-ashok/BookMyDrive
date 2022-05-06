@@ -139,7 +139,7 @@ const updateUserProfilePicture = asyncHandler(async (req, res) => {
   const { link } = req.body
   const user = await User.findById(req.user._id)
   if (user) {
-    user.profilePic = link
+    user.profilePic = link || user.profilePic
 
     if (user) {
       const updateUser = await user.save()

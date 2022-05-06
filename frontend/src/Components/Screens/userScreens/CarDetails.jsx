@@ -46,7 +46,7 @@ function CarDetails() {
         <Container style={{ marginTop: '5em' }}>
             <Grid container direction='column' marginY={5} spacing={3} sm={12}>
                 <Grid item sm={12} container spacing={2} direction='row'>
-                    <img src="https://firebasestorage.googleapis.com/v0/b/bmdimageupload.appspot.com/o/images%2Fcar%2Fjetta.jpg43cb366b-8450-44bd-afcb-4ccbd53480ab?alt=media&token=ac62fdd0-e79f-44dc-9bf4-0fbd566fd0b9" alt="" style={{ width: '100%', height: 'auto' }} />
+                    <img src={car.image1} alt="" style={{ width: '100%', height: 'auto' }} />
                     <Grid item sm={6}>
                         <h2>{car.make} {car.carModel}</h2>
                         <h4>{car.carType}</h4>

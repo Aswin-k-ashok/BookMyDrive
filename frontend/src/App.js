@@ -11,6 +11,7 @@ import Report from './Components/Screens/adminScreen/Report'
 import UserManagement from './Components/Screens/adminScreen/UserManagement'
 // owner screens
 import AddCar from './Components/Screens/ownerScreens/AddCar'
+import CarUpload from './Components/Screens/ownerScreens/CarUpload'
 import DashBoard from './Components/Screens/ownerScreens/DashBoard'
 // userRoutes
 import ImageUpload from './Components/Screens/ownerScreens/ImageUpload'
@@ -46,6 +47,7 @@ function App() {
           <Route path='/upload' element={<ImageUpload />} />
           <Route path='/carDetails/:id' element={<CarDetails />} />
           <Route path='/admin' element={<AdminLoginScreen />} />
+          <Route path='/carupload/:id' element={<CarUpload />} />
           <Route path='/uploaddp' element={<DpUpload />} />
           <Route path='/' element={<HomeScreen />} />
           {/* owner screens */}
