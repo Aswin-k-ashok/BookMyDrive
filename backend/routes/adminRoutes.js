@@ -7,6 +7,7 @@ import {
   registerAdmin,
   unBlockUser,
 } from '../controller/adminController.js'
+import { protect } from '../middlewares/authMiddlewares.js'
 
 const router = express.Router()
 

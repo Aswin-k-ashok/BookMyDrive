@@ -98,14 +98,18 @@ const ownerPrivilegeRemove = asyncHandler(async (req, res) => {
 //@ access private admin
 
 const blockUser = asyncHandler(async (req, res) => {
-  const { email } = req.body
-  const user = await User.findOne({ email })
+  console.log(req.body)
+  const { id } = req.body
+  const user = await User.findById(id)
   if (user) {
-    user.isBlocked = true
-    res.json({
-      user: user,
-      message: 'user blocked',
-    })
+    console.log(user)
+    if (user.isBlocked === false) {
+      user.isBlocked = true
+      res.json({
+        user: user,
+        message: 'user blocked',
+      })
+    }
   } else {
     res.status(401)
     throw new Error('user already blocked')
@@ -113,14 +117,16 @@ const blockUser = asyncHandler(async (req, res) => {
 })
 
 const unBlockUser = asyncHandler(async (req, res) => {
-  const { email } = req.body
-  const user = await User.findOne({ email })
+  const { id } = req.body
+  const user = await User.findById({ id })
   if (user) {
-    user.isBlocked = false
-    res.json({
-      user: user,
-      message: 'user un blocked',
-    })
+    if (user.isBlocked === true) {
+      user.isBlocked = false
+      res.json({
+        user: user,
+        message: 'user un blocked',
+      })
+    }
   } else {
     res.status(401)
     throw new Error('user already unblocked')

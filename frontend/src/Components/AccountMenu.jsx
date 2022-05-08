@@ -12,6 +12,7 @@ import Tooltip from '@mui/material/Tooltip';
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { adminLogout } from '../Redux/Features/adminFeatures/adminLoginFeature';
 import { userLogout } from '../Redux/Features/userFeatures/userLoginFeatures';
 
 
@@ -22,6 +23,10 @@ export default function AccountMenu() {
 
     const userData = useSelector((state) => {
         return state['logedInUser']
+    })
+
+    const { admin } = useSelector((state) => {
+        return state['adminLogin']
     })
 
     const { user, loading, error } = userData
@@ -42,6 +47,14 @@ export default function AccountMenu() {
         dispatch(userLogout())
         // dispatch(stateReset())
         console.log('user logged out')
+    }
+
+    const adminLogoutHandler = () => {
+        window.location.href = '/admin'
+        console.log("usr log out")
+        dispatch(adminLogout())
+        // dispatch(stateReset())
+        console.log('admin logged out')
     }
 
     let logo = 'G'
@@ -135,7 +148,7 @@ export default function AccountMenu() {
                         <Avatar /> My account
                     </MenuItem>
                     <Divider />
-                    <MenuItem>
+                    {/* <MenuItem>
                         <ListItemIcon>
                             <PersonAdd fontSize="small" />
                         </ListItemIcon>
@@ -146,7 +159,7 @@ export default function AccountMenu() {
                             <Settings fontSize="small" />
                         </ListItemIcon>
                         Settings
-                    </MenuItem>
+                    </MenuItem> */}
 
 
 
@@ -159,93 +172,183 @@ export default function AccountMenu() {
 
 
                 </Menu>
-            </React.Fragment>) : (<React.Fragment>
-                <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
-                    {/* <Typography sx={{ minWidth: 100 }}>Contact</Typography>
+            </React.Fragment>) :
+
+                admin ? (<React.Fragment>  {/* admin account menu*/}
+                    <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
+                        {/* <Typography sx={{ minWidth: 100 }}>Contact</Typography>
                 <Typography sx={{ minWidth: 100 }}>Profile</Typography> */}
-                    <Tooltip title="Account settings">
-                        <IconButton
-                            onClick={handleClick}
-                            size="small"
-                            sx={{ ml: 2 }}
-                            aria-controls={open ? 'account-menu' : undefined}
-                            aria-haspopup="true"
-                            aria-expanded={open ? 'true' : undefined}
+                        <Tooltip title="Account settings">
+                            <IconButton
+                                onClick={handleClick}
+                                size="small"
+                                sx={{ ml: 2 }}
+                                aria-controls={open ? 'account-menu' : undefined}
+                                aria-haspopup="true"
+                                aria-expanded={open ? 'true' : undefined}
+                            >
+                                <Avatar sx={{ width: 32, height: 32 }}> G</Avatar>
+                            </IconButton>
+                        </Tooltip>
+                    </Box>
+                    <Menu
+                        anchorEl={anchorEl}
+                        id="account-menu"
+                        open={open}
+                        onClose={handleClose}
+                        onClick={handleClose}
+                        PaperProps={{
+                            elevation: 0,
+                            sx: {
+                                // overflow: 'visible',
+                                filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                                mt: 1.5,
+                                '& .MuiAvatar-root': {
+                                    width: 32,
+                                    height: 32,
+                                    ml: -0.5,
+                                    mr: 1,
+                                },
+                                '&:before': {
+                                    content: '""',
+                                    display: 'block',
+                                    position: 'absolute',
+                                    top: 0,
+                                    right: 14,
+                                    width: 10,
+                                    height: 10,
+                                    bgcolor: 'background.paper',
+                                    transform: 'translateY(-50%) rotate(45deg)',
+                                    zIndex: 0,
+                                },
+                            },
+                        }}
+                        transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+                        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+                    >
+                        <MenuItem onClick={() => navigate('/profile')}>
+                            <Avatar />
+                            <p>admin</p>
+
+                        </MenuItem>
+                        <MenuItem>
+                            <Avatar /> My account
+                        </MenuItem>
+                        <Divider />
+                        <MenuItem>
+                            <ListItemIcon>
+                                <PersonAdd fontSize="small" />
+                            </ListItemIcon>
+                            Add another account
+                        </MenuItem>
+                        <MenuItem>
+                            <ListItemIcon>
+                                <Settings fontSize="small" />
+                            </ListItemIcon>
+                            Settings
+                        </MenuItem>
+
+
+
+
+                        <MenuItem onClick={() => adminLogoutHandler()}>
+                            <ListItemIcon >
+                                <Logout fontSize="small" />
+                            </ListItemIcon >
+                            Log out
+                        </MenuItem>
+
+
+                    </Menu>
+                </React.Fragment>) :
+
+                    (<React.Fragment>  {/* no user fragment*/}
+                        <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
+                            {/* <Typography sx={{ minWidth: 100 }}>Contact</Typography>
+                <Typography sx={{ minWidth: 100 }}>Profile</Typography> */}
+                            <Tooltip title="Account settings">
+                                <IconButton
+                                    onClick={handleClick}
+                                    size="small"
+                                    sx={{ ml: 2 }}
+                                    aria-controls={open ? 'account-menu' : undefined}
+                                    aria-haspopup="true"
+                                    aria-expanded={open ? 'true' : undefined}
+                                >
+                                    <Avatar sx={{ width: 32, height: 32 }}> G</Avatar>
+                                </IconButton>
+                            </Tooltip>
+                        </Box>
+                        <Menu
+                            anchorEl={anchorEl}
+                            id="account-menu"
+                            open={open}
+                            onClose={handleClose}
+                            onClick={handleClose}
+                            PaperProps={{
+                                elevation: 0,
+                                sx: {
+                                    // overflow: 'visible',
+                                    filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+                                    mt: 1.5,
+                                    '& .MuiAvatar-root': {
+                                        width: 32,
+                                        height: 32,
+                                        ml: -0.5,
+                                        mr: 1,
+                                    },
+                                    '&:before': {
+                                        content: '""',
+                                        display: 'block',
+                                        position: 'absolute',
+                                        top: 0,
+                                        right: 14,
+                                        width: 10,
+                                        height: 10,
+                                        bgcolor: 'background.paper',
+                                        transform: 'translateY(-50%) rotate(45deg)',
+                                        zIndex: 0,
+                                    },
+                                },
+                            }}
+                            transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+                            anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                         >
-                            <Avatar sx={{ width: 32, height: 32 }}> G</Avatar>
-                        </IconButton>
-                    </Tooltip>
-                </Box>
-                <Menu
-                    anchorEl={anchorEl}
-                    id="account-menu"
-                    open={open}
-                    onClose={handleClose}
-                    onClick={handleClose}
-                    PaperProps={{
-                        elevation: 0,
-                        sx: {
-                            // overflow: 'visible',
-                            filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-                            mt: 1.5,
-                            '& .MuiAvatar-root': {
-                                width: 32,
-                                height: 32,
-                                ml: -0.5,
-                                mr: 1,
-                            },
-                            '&:before': {
-                                content: '""',
-                                display: 'block',
-                                position: 'absolute',
-                                top: 0,
-                                right: 14,
-                                width: 10,
-                                height: 10,
-                                bgcolor: 'background.paper',
-                                transform: 'translateY(-50%) rotate(45deg)',
-                                zIndex: 0,
-                            },
-                        },
-                    }}
-                    transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-                    anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-                >
-                    <MenuItem onClick={() => navigate('/profile')}>
-                        <Avatar />
-                        <p>gust user</p>
+                            <MenuItem onClick={() => navigate('/profile')}>
+                                <Avatar />
+                                <p>gust user</p>
 
-                    </MenuItem>
-                    <MenuItem>
-                        <Avatar /> My account
-                    </MenuItem>
-                    <Divider />
-                    <MenuItem>
-                        <ListItemIcon>
-                            <PersonAdd fontSize="small" />
-                        </ListItemIcon>
-                        Add another account
-                    </MenuItem>
-                    <MenuItem>
-                        <ListItemIcon>
-                            <Settings fontSize="small" />
-                        </ListItemIcon>
-                        Settings
-                    </MenuItem>
+                            </MenuItem>
+                            <MenuItem>
+                                <Avatar /> My account
+                            </MenuItem>
+                            <Divider />
+                            <MenuItem>
+                                <ListItemIcon>
+                                    <PersonAdd fontSize="small" />
+                                </ListItemIcon>
+                                Add another account
+                            </MenuItem>
+                            <MenuItem>
+                                <ListItemIcon>
+                                    <Settings fontSize="small" />
+                                </ListItemIcon>
+                                Settings
+                            </MenuItem>
 
 
 
 
-                    <MenuItem onClick={() => logoutHandler()}>
-                        <ListItemIcon >
-                            <Logout fontSize="small" />
-                        </ListItemIcon>
-                        Log In
-                    </MenuItem>
+                            <MenuItem onClick={() => logoutHandler()}>
+                                <ListItemIcon >
+                                    <Logout fontSize="small" />
+                                </ListItemIcon>
+                                Log In
+                            </MenuItem>
 
 
-                </Menu>
-            </React.Fragment>)}
+                        </Menu>
+                    </React.Fragment>)}
         </>
 
     );

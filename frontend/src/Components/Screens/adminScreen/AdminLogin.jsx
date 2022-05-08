@@ -1,10 +1,26 @@
 import { Button, Container, Grid, Link, Paper, TextField, Typography } from '@mui/material';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { adminLogin } from '../../../Redux/Features/adminFeatures/adminLoginFeature';
 
 function AdminLoginScreen() {
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const { admin } = useSelector((state) => {
+        return state['adminLogin']
+    })
+
+
     const { handleSubmit, register, formState: { errors } } = useForm();
-    const onSubmit = values => console.log(values);
+    const onSubmit = values => dispatch(adminLogin(values));
+
+    useEffect(() => {
+        if (admin) {
+            navigate('/adminDash')
+        }
+    }, [admin])
 
     return (
         <Container justifyContent='center'>
