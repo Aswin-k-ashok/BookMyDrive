@@ -101,36 +101,36 @@ const blockUser = asyncHandler(async (req, res) => {
   console.log(req.body)
   const { id } = req.body
   const user = await User.findById(id)
-  if (user) {
-    console.log(user)
-    if (user.isBlocked === false) {
-      user.isBlocked = true
-      res.json({
-        user: user,
-        message: 'user blocked',
-      })
-    }
-  } else {
-    res.status(401)
-    throw new Error('user already blocked')
+  if (user.isBlocked) {
+    //true
+    res.json({
+      user: user,
+      message: 'user is already blocked',
+    })
+    return
   }
+  user.isBlocked = true
+  res.json({
+    message: 'user blocked',
+    user: user,
+  })
 })
 
 const unBlockUser = asyncHandler(async (req, res) => {
   const { id } = req.body
-  const user = await User.findById({ id })
-  if (user) {
-    if (user.isBlocked === true) {
-      user.isBlocked = false
-      res.json({
-        user: user,
-        message: 'user un blocked',
-      })
-    }
-  } else {
-    res.status(401)
-    throw new Error('user already unblocked')
+  const user = await User.findById(id)
+  if (!user.isBlocked) {
+    res.json({
+      user: user,
+      message: 'Block the user first',
+    })
+    return
   }
+  user.isBlocked = false
+  res.json({
+    message: 'user unblocked',
+    user: user,
+  })
 })
 
 export {
