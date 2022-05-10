@@ -37,7 +37,7 @@ function LocationManagement() {
             <h3>Location management</h3>
             <form className={classes.locationFormStyle} onSubmit={submitHandler}>
 
-                <Autocomplete
+                {/* <Autocomplete
                     disablePortal
                     id="combo-box-demo"
                     options={states}
@@ -46,9 +46,9 @@ function LocationManagement() {
                     renderInput={(params) => <TextField {...params} label="states value={params}
                     " onChange={(e) => setState(e.target.value)} />}
 
-                />
-                {/* <TextField id='filled-basic' helperText='select  state' value={state}
-                   ></TextField> */}
+                /> */}
+                <TextField id='filled-basic' helperText='select  state' value={state}
+                ></TextField>
 
                 <TextField id='filled-basic' helperText='select city' value={city} onChange={(e) => setCity(e.target.value)} ></TextField>
 

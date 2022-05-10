@@ -81,7 +81,7 @@ function CarDetails() {
 
                             </MuiPickersUtilsProvider>
                             <TextField label='pickup location'></TextField>
-                            <Button type='submit' variant='contained' size='large'>book drive</Button>
+                            <Button type='submit' variant='contained' size='large' style={{ width: "max-content", margin: "auto" }}>book drive</Button>
                         </form>
                     </Grid>
                 </Grid>

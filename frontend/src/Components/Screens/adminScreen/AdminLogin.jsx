@@ -41,7 +41,7 @@ function AdminLoginScreen() {
 
 
 
-                            <TextField id='outlined-basic' label="Password" variant="outlined" helperText={errors.password && errors.password.message} style={{ width: '80%', margin: "2em" }}       {...register("password", {
+                            <TextField id='outlined-basic' label="Password" type='password' variant="outlined" helperText={errors.password && errors.password.message} style={{ width: '80%', margin: "2em" }}       {...register("password", {
                                 required: 'Required'
                             })} />
 

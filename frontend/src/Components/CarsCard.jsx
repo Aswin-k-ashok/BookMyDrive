@@ -6,6 +6,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
+import { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -16,6 +17,7 @@ function CarsCard() {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const [carImage, setCarImage] = useState('')
 
     const allCars = useSelector((state) => {
         return state['allCars']
@@ -33,19 +35,22 @@ function CarsCard() {
         <Container>
             <h1>All Cars</h1>
             <Grid container spacing={1}>
-
                 {cars.map(car => {
+
                     return (
                         <Grid item lg={4} sm={12} md={6} marginY={1}>
 
                             <Card sx={{ minHeight: 400 }}>
-                                <CardMedia
-                                    component="img"
-                                    alt={car.carModel}
-                                    minHeight="240"
-                                    image={car.image1}
-                                    sx={{ maxHeight: 200 }}
-                                />
+                                {car.image1 === 'sample url' ? <p>no image selected</p> : (
+
+                                    <CardMedia
+                                        component="img"
+                                        alt={car.carModel}
+                                        minHeight="240"
+                                        image={car.image1}
+                                        sx={{ maxHeight: 200 }}
+                                    />
+                                )}
                                 <CardContent>
                                     <Typography gutterBottom variant="h5" component="div">
                                         {car.make} {car.carModel}

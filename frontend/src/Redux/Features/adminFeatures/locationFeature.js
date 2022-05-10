@@ -11,7 +11,7 @@ const initialState = {
 export const addNewLocation = createAsyncThunk(
   'admin/location',
   async (values) => {
-    let response = await axios.post('/api/locationsotp', values)
+    let response = await axios.post('/api/location', values)
     return response.data
   }
 )

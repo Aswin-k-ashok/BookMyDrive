@@ -1,7 +1,7 @@
 import { Button, TextField } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 import { Box } from '@mui/system'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const useStyles = makeStyles({
@@ -23,9 +23,16 @@ const useStyles = makeStyles({
 
 function OwnerRegister() {
 
-    const navigate = useNavigate()
+    const [idcard, setIdcard] = useState('')
+    const [registerNumber, setRegisterNumber] = useState('')
 
+    const navigate = useNavigate()
     const classes = useStyles()
+
+    const submitHandler = (e) => {
+        e.preventDefault()
+        console.log(idcard, registerNumber)
+    }
 
     return (
         <div>
@@ -33,10 +40,10 @@ function OwnerRegister() {
             <Box className={classes.flexForm}>
                 <h4>Become our partner</h4>
                 <p>Register With your id(voters/DrivingLicence)</p>
-                <form className={classes.flexForm} >
-                    <TextField type='text' placeholder='Identificaton' />
-                    <TextField type='text' placeholder='Register number of your car' />
-                    <Button variant='contained'>Send Request for approval</Button>
+                <form className={classes.flexForm} onSubmit={submitHandler}>
+                    <TextField type='text' placeholder='Identificaton' value={idcard} onChange={(e) => { setIdcard(e.target.value) }} />
+                    <TextField type='text' placeholder='Register number of your car' value={registerNumber} onChange={(e) => { setRegisterNumber(e.target.value) }} />
+                    <Button variant='contained' type='submit'>Send Request for approval</Button>
                     {/* <Button variant='contained' onClick={() => navigate('/ownerDash')} >proceed to payment</Button> */}
                 </form>
             </Box>

@@ -6,12 +6,35 @@ import { useNavigate } from 'react-router-dom'
 import { carDeleteActon, carStateReset, createCar, getCarData } from '../../../Redux/Features/carFeatures/carFeature'
 import { userCarList } from '../../../Redux/Features/carFeatures/userCarFeature'
 import { openSnackbarAction } from '../../../Redux/uiFeatures/snackbarFeature'
+import { makeStyles } from '@mui/styles'
+import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
+
+const useStyles = makeStyles({
+    glass: {
+        gap: '1em',
+        color: 'black',
+        background: 'rgba( 255, 255, 255, 0.25 )',
+        boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+        backdropFilter: 'blur( 0px )',
+        borderRadius: '10px',
+        border: '1px solid rgba( 255, 255, 255, 0.18 )',
+        padding: '1em'
+
+    },
+    fCenter: {
+        display: 'flex',
+        justifyContent: 'end',
+        marginBottom: "1em",
+        width: '100%'
+    }
+})
 
 
 function MyCars() {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
+    const classes = useStyles()
     const [caruploadredirect, setCaruploadredirect] = useState(false)
     const { userCar } = useSelector((state) => {
         return state['usersCars']
@@ -56,14 +79,17 @@ function MyCars() {
 
 
     return (
-        <div >
-            <Button onClick={() => {
-                dispatch(carStateReset()).then(
-                    dispatch(createCar()),
-                    setCaruploadredirect(true)
-                )
-            }
-            }>Register New Car</Button>
+        <div className={classes.glass}>
+            <h3>Car Manangement</h3>
+            <div className={classes.fCenter}>
+                <Button onClick={() => {
+                    dispatch(carStateReset()).then(
+                        dispatch(createCar()),
+                        setCaruploadredirect(true)
+                    )
+                }
+                } variant="contained" color='info' style={{}}>Add New Car       <DirectionsCarIcon /><span style={{ fontWeight: "800" }}>+</span></Button>
+            </div>
             {userCar.map((car) =>
             (<div>
 
@@ -82,19 +108,19 @@ function MyCars() {
                     </div>
                     <div style={{ display: 'flex', justifyContent: "start", minWidth: "12em" }} onClick={() => navigate(`/carDetails/${car._id}`)}><p>
 
-                        <Button contained>view car details</Button>
+                        <Button contained color='success' variant='contained'>view car details</Button>
                     </p>
 
                     </div>
                     <div style={{ display: 'flex', justifyContent: "start", minWidth: "12em" }} onClick={() => updateHandler(car._id)}><p>
 
-                        <Button>update car details</Button>
+                        <Button color='warning' variant='outlined'>update car details</Button>
                     </p>
                     </div>
                     <div onClick={() => deletehandler(car._id)}>
-                        <p>
-                            <CarCrashOutlinedIcon />
-                        </p>
+                        <Button color='error' variant='contained'>
+                            delete <CarCrashOutlinedIcon /> <span style={{ fontWeight: "800" }}> x </span>
+                        </Button>
 
                     </div>
                 </div>

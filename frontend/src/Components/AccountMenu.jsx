@@ -5,6 +5,7 @@ import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -187,7 +188,7 @@ export default function AccountMenu() {
                                 aria-haspopup="true"
                                 aria-expanded={open ? 'true' : undefined}
                             >
-                                <Avatar sx={{ width: 32, height: 32 }}> G</Avatar>
+                                ADMINISTRATOR<AdminPanelSettingsIcon sx={{ width: 32, height: 32 }} />
                             </IconButton>
                         </Tooltip>
                     </Box>

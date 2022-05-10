@@ -8,6 +8,7 @@ import CarsCard from '../../CarsCard'
 import HomeBanner from '../../HomeBanner'
 import HomePageCards from '../../HomePageCards'
 import HomeScreenCarousel from '../../HomeScreenCarousel'
+import CustomModal from '../CustomModal'
 
 
 
@@ -34,6 +35,7 @@ function HomeScreen() {
                 <HomePageCards />
                 <HomeScreenCarousel />
                 <CarsCard />
+                <CustomModal />
                 {/* <AllCars /> */}
             </Container>
 

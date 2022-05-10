@@ -21,7 +21,8 @@ const addCar = asyncHandler(async (req, res) => {
     city: 'city',
     rent: 0,
     description: 'Description',
-    image1: 'sample url',
+    image1:
+      'https://firebasestorage.googleapis.com/v0/b/bmdimageupload.appspot.com/o/images%2Fcar%2Fgeneric-sedan-silo.jpge301301a-55aa-4420-b1e8-543cf23401e9?alt=media&token=e7bbab5d-73f0-44c8-8b48-80977a31f02b',
     image2: 'sample url',
     image3: 'sample url',
     image4: 'sample url',
