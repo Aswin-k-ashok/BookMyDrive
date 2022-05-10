@@ -1,16 +1,16 @@
-import React from 'react'
-import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux'
-import { getAllUsers } from "../../../Redux/Features/adminFeatures/GetAllUsersFeatures";
+import { Button } from '@mui/material';
+import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
-import { blockUser, unblockUser } from '../../../Redux/Features/adminFeatures/admin-userFeatures';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import { Button } from '@mui/material';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { blockUser, unblockUser } from '../../../Redux/Features/adminFeatures/admin-userFeatures';
+import { getAllUsers } from "../../../Redux/Features/adminFeatures/GetAllUsersFeatures";
 
 // function createData(name, calories, fat, carbs, protein) {
 //     return { name, calories, fat, carbs, protein };
@@ -27,6 +27,7 @@ import { Button } from '@mui/material';
 function UserManagement() {
 
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const { loading, users, error } = useSelector((state) => {
         return state['allUsers']
     })
@@ -79,7 +80,7 @@ function UserManagement() {
                                 <TableCell align="right">{user.isOwner}</TableCell>
                                 <TableCell align='right'><Button onClick={() => userBlockHandler(user._id)}>Block user</Button></TableCell>
                                 <TableCell align='right'><Button onClick={() => userUnblockHandler(user._id)}>Un block user</Button></TableCell>
-                                <TableCell align='right'><Button>Visit profile</Button></TableCell>
+                                <TableCell align='right'><Button onClick={() => navigate('/profile')}>Visit profile</Button></TableCell>
 
 
                             </TableRow>

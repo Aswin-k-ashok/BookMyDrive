@@ -9,7 +9,14 @@ const useStyles = makeStyles({
         display: 'flex',
         flexDirection: 'column',
         gap: '1em',
-        color: 'black'
+        color: 'black',
+        background: 'rgba( 255, 255, 255, 0.25 )',
+        boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+        backdropFilter: 'blur( 0px )',
+        borderRadius: '10px',
+        border: '1px solid rgba( 255, 255, 255, 0.18 )',
+        padding: '1em'
+
     }
 })
 
@@ -24,13 +31,13 @@ function OwnerRegister() {
         <div>
 
             <Box className={classes.flexForm}>
-                <h4> become our partner</h4>
-                <p>register car, and pay a refundable amount of 5000 rs to complete your registration</p>
-                <form className={classes.flexForm}>
+                <h4>Become our partner</h4>
+                <p>Register With your id(voters/DrivingLicence)</p>
+                <form className={classes.flexForm} >
                     <TextField type='text' placeholder='Identificaton' />
-                    <TextField type='text' placeholder='rc-book number of your car' />
-                    <Button variant='contained'>upload detals of your card</Button>
-                    <Button variant='contained' onClick={() => navigate('/ownerDash')} >proceed to payment</Button>
+                    <TextField type='text' placeholder='Register number of your car' />
+                    <Button variant='contained'>Send Request for approval</Button>
+                    {/* <Button variant='contained' onClick={() => navigate('/ownerDash')} >proceed to payment</Button> */}
                 </form>
             </Box>
 

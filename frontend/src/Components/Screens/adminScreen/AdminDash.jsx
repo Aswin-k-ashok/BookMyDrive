@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import * as React from 'react';
 import Carmanagement from './Carmanagement';
 import UserManagement from './UserManagement';
+import LocationManagement from './LocationManagement';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -20,7 +21,7 @@ function TabPanel(props) {
                 id={`vertical-tabpanel-${index}`}
                 aria-labelledby={`vertical-tab-${index}`}
                 {...other}
-                style={{ width: '100vw' }}
+                style={{ width: '80vw' }}
             >
                 {value === index && (
                     <Box sx={{ p: 3 }}>
@@ -98,7 +99,7 @@ function AdminDash() {
                             <UserManagement />
                         </TabPanel>
                         <TabPanel value={value} index={3}>
-                            location management
+                            <LocationManagement />
                         </TabPanel>
                         <TabPanel value={value} index={4}>
                             owner request

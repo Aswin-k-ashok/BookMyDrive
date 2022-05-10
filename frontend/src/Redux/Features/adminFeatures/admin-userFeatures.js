@@ -7,13 +7,13 @@ const initialState = {
   error: null,
 }
 
-export const blockUser = createAsyncThunk('/user', async (values) => {
+export const blockUser = createAsyncThunk('/user/block', async (values) => {
   let response = await axios.post('/api/admin/block', { id: values })
   console.log(response)
   return response.data
 })
 
-export const unblockUser = createAsyncThunk('/user/block', async (values) => {
+export const unblockUser = createAsyncThunk('/user/unblock', async (values) => {
   let response = await axios.post('/api/admin/unblock', { id: values })
   return response.data
 })

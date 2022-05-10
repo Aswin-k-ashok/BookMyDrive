@@ -15,6 +15,13 @@ const styles = makeStyles({
         display: 'flex',
         flexDirection: "column",
         alignItems: 'center',
+        background: 'rgba( 255, 255, 255, 0.25 )',
+        boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+        backdropFilter: 'blur( 0px )',
+        borderRadius: '10px',
+        border: '1px solid rgba( 255, 255, 255, 0.18 )',
+        padding: '1em'
+
     },
 
     formStyleInput: {
@@ -22,7 +29,7 @@ const styles = makeStyles({
         padding: '1em',
         width: '80%',
         borderRadius: '8px',
-        border: 'none',
+        border: '1px solid',
     }
 })
 

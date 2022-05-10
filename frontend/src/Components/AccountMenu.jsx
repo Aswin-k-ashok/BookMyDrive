@@ -226,7 +226,7 @@ export default function AccountMenu() {
                         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                     >
-                        <MenuItem onClick={() => navigate('/profile')}>
+                        <MenuItem onClick={() => navigate('/adminDash')}>
                             <Avatar />
                             <p>admin</p>
 
@@ -314,7 +314,7 @@ export default function AccountMenu() {
                             transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                         >
-                            <MenuItem onClick={() => navigate('/profile')}>
+                            <MenuItem onClick={() => navigate('/')}>
                                 <Avatar />
                                 <p>gust user</p>
 
