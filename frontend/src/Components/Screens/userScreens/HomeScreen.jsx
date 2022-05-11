@@ -9,7 +9,7 @@ import HomeBanner from '../../HomeBanner'
 import HomePageCards from '../../HomePageCards'
 import HomeScreenCarousel from '../../HomeScreenCarousel'
 import CustomModal from '../CustomModal'
-
+import { openModalAction } from '../../../Redux/uiFeatures/modalFeature'
 
 
 
@@ -24,6 +24,10 @@ function HomeScreen() {
 
     const { user, error, logding } = userData
 
+    const modalHandler = () => {
+        dispatch(openModalAction({ message: 'modal open', textOne: 'accept', colorOne: 'success', textTwo: 'wartext', colorTwo: 'warning' }))
+    }
+
     useEffect(() => {
         dispatch(getAllCars())
     }, [dispatch])
@@ -35,7 +39,7 @@ function HomeScreen() {
                 <HomePageCards />
                 <HomeScreenCarousel />
                 <CarsCard />
-                <CustomModal />
+                <button onClick={() => modalHandler()}> dispatch modal</button>
                 {/* <AllCars /> */}
             </Container>
 

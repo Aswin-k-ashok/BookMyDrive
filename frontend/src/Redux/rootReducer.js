@@ -7,6 +7,7 @@ import userCarReducer from './Features/carFeatures/userCarFeature'
 import userLoginReducer from './Features/userFeatures/userLoginFeatures'
 import ownerRequestReducer from './Features/userFeatures/userRequestToOwnerFeature'
 import snackbarReducer from './uiFeatures/snackbarFeature'
+import modalReducer from './uiFeatures/modalFeature'
 
 const rootReducer = {
   logedInUser: userLoginReducer,
@@ -14,6 +15,7 @@ const rootReducer = {
   allCars: allCarsReducer,
   usersCars: userCarReducer,
   snackbarData: snackbarReducer,
+  modalData: modalReducer,
   adminLogin: adminLoginReducer,
   allUsers: allUserReducer,
   adminEditUser: adminEditUserReducer,

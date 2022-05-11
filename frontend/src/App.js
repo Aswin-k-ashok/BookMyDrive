@@ -25,11 +25,13 @@ import HomeScreen from './Components/Screens/userScreens/HomeScreen'
 import LoginScreen from './Components/Screens/userScreens/LoginScreen'
 import RegisterScreen from './Components/Screens/userScreens/RegisterScreen'
 import UserProfile from './Components/Screens/userScreens/UserProfile'
+import CustomModal from './Components/Screens/CustomModal'
 
 function App() {
   return (
     <>
       <CustomSnackbar />
+      <CustomModal />
       <Router>
         <AppBar />
         <Routes>

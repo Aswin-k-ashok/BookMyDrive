@@ -8,6 +8,7 @@ import { userCarList } from '../../../Redux/Features/carFeatures/userCarFeature'
 import { openSnackbarAction } from '../../../Redux/uiFeatures/snackbarFeature'
 import { makeStyles } from '@mui/styles'
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
+import { openModalAction, modalStateClearAction } from '../../../Redux/uiFeatures/modalFeature'
 
 const useStyles = makeStyles({
     glass: {
@@ -30,15 +31,20 @@ const useStyles = makeStyles({
 })
 
 
+
+
 function MyCars() {
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const classes = useStyles()
     const [caruploadredirect, setCaruploadredirect] = useState(false)
+    const [id, setId] = useState()
     const { userCar } = useSelector((state) => {
         return state['usersCars']
     })
+
+    const { modalSuccess } = useSelector((state) => state['modalData'])
 
     const { carData } = useSelector((state) => {
         return state['car']
@@ -46,12 +52,8 @@ function MyCars() {
     const newCarId = carData.id
 
     const deletehandler = (id) => {
-        if (window.confirm('you sure wnat to delete this car ?')) {
-            dispatch(carDeleteActon(id))
-            dispatch(openSnackbarAction({ severity: 'info', snackmessage: 'car deleted successfully' }))
-            dispatch(userCarList())
-            dispatch(userCarList())
-        }
+        setId(id)
+        dispatch(openModalAction({ message: 'are you sure to delete this car', textOne: 'YES', textTwo: 'NO', colorOne: 'error', colorTwo: 'info' }))
     }
 
     const updateHandler = (id) => {
@@ -64,6 +66,19 @@ function MyCars() {
     useEffect(() => {
 
     }, [deletehandler, dispatch, userCarList, openSnackbarAction])
+
+    useEffect(() => {
+
+        if (modalSuccess) {
+            dispatch(carDeleteActon(id))
+            dispatch(openSnackbarAction({ severity: 'info', snackmessage: 'car deleted successfully' }))
+            dispatch(userCarList())
+            dispatch(userCarList())
+            dispatch(modalStateClearAction())
+        }
+
+
+    }, [modalSuccess, userCarList, dispatch])
 
 
 
