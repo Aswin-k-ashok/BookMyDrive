@@ -55,6 +55,15 @@ const adminLogin = asyncHandler(async (req, res) => {
   }
 })
 
+//@ desc owner request list
+//@ route get/api/amin/owner
+//@ access private admin
+
+const getOwnerRequest = asyncHandler(async (req, res) => {
+  const ownerUser = await User.find({ requestStatus: true })
+  res.json(ownerUser)
+})
+
 //@ desc owner request verification
 //@ router POST/api/admin/owner
 //@ access private admin
@@ -94,7 +103,7 @@ const ownerPrivilegeRemove = asyncHandler(async (req, res) => {
 })
 
 //@ desc user block
-//@ desc get/api/admin/owner
+//@ desc post/api/admin/block
 //@ access private admin
 
 const blockUser = asyncHandler(async (req, res) => {
@@ -116,6 +125,10 @@ const blockUser = asyncHandler(async (req, res) => {
   })
 })
 
+//@ desc unblock user
+//@ route /api/admin/unblock
+//@ access private admin
+
 const unBlockUser = asyncHandler(async (req, res) => {
   const { id } = req.body
   const user = await User.findById(id)
@@ -136,6 +149,7 @@ const unBlockUser = asyncHandler(async (req, res) => {
 export {
   registerAdmin,
   adminLogin,
+  getOwnerRequest,
   ownerVerification,
   ownerPrivilegeRemove,
   blockUser,

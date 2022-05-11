@@ -2,7 +2,9 @@ import { Button, TextField } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 import { Box } from '@mui/system'
 import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { ownerPrivilege } from '../../../Redux/Features/userFeatures/userRequestToOwnerFeature'
 
 const useStyles = makeStyles({
     flexForm: {
@@ -23,15 +25,21 @@ const useStyles = makeStyles({
 
 function OwnerRegister() {
 
+    const dispatch = useDispatch()
     const [idcard, setIdcard] = useState('')
     const [registerNumber, setRegisterNumber] = useState('')
-
+    const [password, setPassword] = useState('')
+    const { user } = useSelector((state) => {
+        return state['logedInUser']
+    })
+    const email = user.email
     const navigate = useNavigate()
     const classes = useStyles()
 
     const submitHandler = (e) => {
         e.preventDefault()
-        console.log(idcard, registerNumber)
+        console.log(idcard, registerNumber, password)
+        dispatch(ownerPrivilege({ licence: idcard, carNumber: registerNumber, password: password, email: email }))
     }
 
     return (
@@ -39,11 +47,15 @@ function OwnerRegister() {
 
             <Box className={classes.flexForm}>
                 <h4>Become our partner</h4>
-                <p>Register With your id(voters/DrivingLicence)</p>
                 <form className={classes.flexForm} onSubmit={submitHandler}>
+                    <p>Register With your id(voters/DrivingLicence)</p>
                     <TextField type='text' placeholder='Identificaton' value={idcard} onChange={(e) => { setIdcard(e.target.value) }} />
+
                     <TextField type='text' placeholder='Register number of your car' value={registerNumber} onChange={(e) => { setRegisterNumber(e.target.value) }} />
-                    <Button variant='contained' type='submit'>Send Request for approval</Button>
+
+
+                    <TextField type='password' placeholder='Type password to confirm' value={password} onChange={(e) => { setPassword(e.target.value) }} />
+                    <Button variant='contained' type='submit' style={{ width: 'fit-content', marginLeft: 'auto' }}>Send Request for approval</Button>
                     {/* <Button variant='contained' onClick={() => navigate('/ownerDash')} >proceed to payment</Button> */}
                 </form>
             </Box>

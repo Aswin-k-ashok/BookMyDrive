@@ -6,6 +6,7 @@ import User from '../models/userModel.js'
 // @access public
 
 const register = asyncHandler(async (req, res) => {
+  console.log(req.body)
   const { email, password, licence } = req.body
   let owner = await User.findOne({ email })
   if (owner && (await owner.matchPassword(password))) {

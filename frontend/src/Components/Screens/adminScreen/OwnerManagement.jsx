@@ -2,7 +2,7 @@ import React from 'react'
 
 function OwnerMangement() {
     return (
-        <div>OwnerMangement</div>
+        <div>owner management</div>
     )
 }
 
