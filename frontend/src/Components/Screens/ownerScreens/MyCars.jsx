@@ -1,5 +1,5 @@
 import CarCrashOutlinedIcon from '@mui/icons-material/CarCrashOutlined'
-import { Button } from '@mui/material'
+import { Button, Grid } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -24,7 +24,7 @@ const useStyles = makeStyles({
     },
     fCenter: {
         display: 'flex',
-        justifyContent: 'end',
+        justifyContent: 'start',
         marginBottom: "1em",
         width: '100%'
     }
@@ -103,43 +103,62 @@ function MyCars() {
                         setCaruploadredirect(true)
                     )
                 }
-                } variant="contained" color='info' style={{}}>Add New Car       <DirectionsCarIcon /><span style={{ fontWeight: "800" }}>+</span></Button>
+                } variant="contained" color='info' style={{}}>Add New Car<DirectionsCarIcon /><span style={{ fontWeight: "800" }}>+</span></Button>
             </div>
             {userCar.map((car) =>
-            (<div>
+            (<>
+                <Grid>
 
-                <div style={{ backgroundColor: "", color: "black", listStyle: "none", display: 'flex', alignItems: "center", justifyContent: "space-evenly", gap: '2em' }}>
-                    <div style={{ display: 'flex', justifyContent: "start", minWidth: "12em" }}>
-                        <p>
+                    <div style={{ backgroundColor: "", color: "black", listStyle: "none", display: 'flex', alignItems: "center", justifyContent: "space-evenly", gap: '2em' }}>
+                        <Grid item lg={2}>
+                            <item style={{ display: 'flex', justifyContent: "start", }}>
+                                <p>
 
-                            {car.make} {car.carModel}
-                        </p>
+                                    {car.make} {car.carModel}
+                                </p>
 
+                            </item>
+                        </Grid>
+                        <Grid item lg={2}>
+
+                            <item style={{ display: 'flex', justifyContent: "start", }}>
+                                <p>
+
+                                    {car.city}
+                                </p>
+                            </item>
+                        </Grid>
+
+                        <Grid item lg={2}>
+
+                            <item style={{ display: 'flex', justifyContent: "start", }} onClick={() => navigate(`/carDetails/${car._id}`)}><p>
+
+                                <Button contained color='success' variant='contained'>view car details</Button>
+                            </p>
+
+                            </item>
+                        </Grid>
+
+                        <Grid item lg={2}>
+
+                            <item style={{ display: 'flex', justifyContent: "start", }} onClick={() => updateHandler(car._id)}><p>
+
+                                <Button color='warning' variant='outlined'>update car details</Button>
+                            </p>
+                            </item>
+                        </Grid>
+                        <Grid item lg={2}>
+
+                            <item onClick={() => deletehandler(car._id)}>
+                                <Button color='error' variant='contained'>
+                                    delete <CarCrashOutlinedIcon /> <span style={{ fontWeight: "800" }}> x </span>
+                                </Button>
+
+                            </item>
+                        </Grid>
                     </div>
-                    <div style={{ display: 'flex', justifyContent: "start", minWidth: "12em" }}><p>
-
-                        {car.city}
-                    </p>
-                    </div>
-                    <div style={{ display: 'flex', justifyContent: "start", minWidth: "12em" }} onClick={() => navigate(`/carDetails/${car._id}`)}><p>
-
-                        <Button contained color='success' variant='contained'>view car details</Button>
-                    </p>
-
-                    </div>
-                    <div style={{ display: 'flex', justifyContent: "start", minWidth: "12em" }} onClick={() => updateHandler(car._id)}><p>
-
-                        <Button color='warning' variant='outlined'>update car details</Button>
-                    </p>
-                    </div>
-                    <div onClick={() => deletehandler(car._id)}>
-                        <Button color='error' variant='contained'>
-                            delete <CarCrashOutlinedIcon /> <span style={{ fontWeight: "800" }}> x </span>
-                        </Button>
-
-                    </div>
-                </div>
-            </div>
+                </Grid>
+            </>
             ))}
         </div>
     )
