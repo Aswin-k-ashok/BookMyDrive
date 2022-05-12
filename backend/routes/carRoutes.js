@@ -20,6 +20,6 @@ router
   .put(protect, updateCar)
   .get(getCarById)
   .delete(protect, deleteCarById)
-router.route('/').post(protect, addCar).get(getAllCars)
+router.route('/').get(getAllCars).post(protect, addCar)
 
 export default router

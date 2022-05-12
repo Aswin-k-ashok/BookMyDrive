@@ -11,6 +11,7 @@ console.log(initialState)
 
 export const getAllCars = createAsyncThunk('/cars', async () => {
   let response = await axios.get('/api/cars')
+  console.log(response.data)
   return response.data
 })
 

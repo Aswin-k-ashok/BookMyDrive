@@ -20,7 +20,7 @@ function AllCars() {
     const navigate = useNavigate()
 
     let CarData = useSelector((state) => {
-        return state['getAllCars']
+        return state['allCars']
     })
 
     let { loading, cars, error } = CarData

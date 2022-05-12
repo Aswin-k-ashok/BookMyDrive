@@ -12,6 +12,14 @@ export const getAllUsers = createAsyncThunk('/allusers', async () => {
   return response.data
 })
 
+export const getAllOwnerRequestedUsers = createAsyncThunk(
+  '/reqestedusers',
+  async () => {
+    let response = await axios.get('/api/admin/owner')
+    return response.data
+  }
+)
+
 const allUsersSlice = createSlice({
   name: 'users',
   initialState: initialState,
@@ -33,6 +41,17 @@ const allUsersSlice = createSlice({
         state.users = action.payload
       })
       .addCase(getAllUsers.rejected, (state) => {
+        state.loading = false
+        state.error = 'error'
+      })
+      .addCase(getAllOwnerRequestedUsers.pending, (state) => {
+        state.loading = true
+      })
+      .addCase(getAllOwnerRequestedUsers.fulfilled, (state, action) => {
+        state.loading = false
+        state.users = action.payload
+      })
+      .addCase(getAllOwnerRequestedUsers.rejected, (state) => {
         state.loading = false
         state.error = 'error'
       })

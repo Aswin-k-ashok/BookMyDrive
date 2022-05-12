@@ -10,7 +10,8 @@ import HomePageCards from '../../HomePageCards'
 import HomeScreenCarousel from '../../HomeScreenCarousel'
 import CustomModal from '../CustomModal'
 import { openModalAction } from '../../../Redux/uiFeatures/modalFeature'
-
+// import { AllCars } from './AllCars'
+import SampleTable from '../../SampleTable'
 
 
 function HomeScreen() {
@@ -39,8 +40,7 @@ function HomeScreen() {
                 <HomePageCards />
                 <HomeScreenCarousel />
                 <CarsCard />
-                <button onClick={() => modalHandler()}> dispatch modal</button>
-                {/* <AllCars /> */}
+                {/* <SampleTable /> */}
             </Container>
 
 

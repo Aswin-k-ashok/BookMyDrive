@@ -8,6 +8,7 @@ import * as React from 'react';
 import Carmanagement from './Carmanagement';
 import UserManagement from './UserManagement';
 import LocationManagement from './LocationManagement';
+import OwnerMangement from './OwnerManagement';
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -93,7 +94,7 @@ function AdminDash() {
                             <Carmanagement />
                         </TabPanel>
                         <TabPanel value={value} index={1}>
-                            owner management
+                            <OwnerMangement />
                         </TabPanel>
                         <TabPanel value={value} index={2}>
                             <UserManagement />
