@@ -1,32 +1,37 @@
-import React from 'react'
-import MaterialTable from 'material-table'
+import * as React from 'react';
+import { DataGrid } from '@mui/x-data-grid';
 
-function SampleTable() {
+const columns = [
+    { field: 'fullName', headerName: 'Full Name' },
+    { field: 'email', headerName: 'Email' },
+    { field: 'phone', headerName: 'Phone number' },
+    { field: 'isBlocked', headerName: 'Block Status' },
+    { field: 'isOwner', headerName: 'Owner status' },
+    { field: 'profile', headerName: 'View Profile' }
+];
 
-    <MaterialTable
-        title="Simple Action Preview"
-        columns={[
-            { title: 'Name', field: 'name' },
-            { title: 'Surname', field: 'surname' },
-            { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
-            {
-                title: 'Birth Place',
-                field: 'birthCity',
-                lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-            },
-        ]}
-        data={[
-            { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-            { name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34 },
-        ]}
-        actions={[
-            {
-                icon: 'save',
-                tooltip: 'Save User',
-                onClick: (event, rowData) => alert("You saved " + rowData.name)
-            }
-        ]}
-    />
+const rows = [
+    { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
+    { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
+    { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
+    { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
+    { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
+    { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
+    { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
+    { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
+    { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
+];
+
+export default function DataTable() {
+    return (
+        <div style={{ height: 400, width: '100%' }}>
+            <DataGrid
+                rows={rows}
+                columns={columns}
+                pageSize={5}
+                rowsPerPageOptions={[5]}
+                checkboxSelection
+            />
+        </div>
+    );
 }
-
-export default SampleTable

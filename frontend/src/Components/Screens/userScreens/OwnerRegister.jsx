@@ -33,13 +33,14 @@ function OwnerRegister() {
         return state['logedInUser']
     })
     const email = user.email
+    const phone = user.phone
+    const id = user._id
     const navigate = useNavigate()
     const classes = useStyles()
-
     const submitHandler = (e) => {
         e.preventDefault()
-        console.log(idcard, registerNumber, password)
-        dispatch(ownerPrivilege({ licence: idcard, carNumber: registerNumber, password: password, email: email }))
+        console.log(idcard, registerNumber, password, phone, email, id)
+        dispatch(ownerPrivilege({ licence: idcard, regNo: registerNumber, password: password, email: email, phone: phone, id: id }))
     }
 
     return (

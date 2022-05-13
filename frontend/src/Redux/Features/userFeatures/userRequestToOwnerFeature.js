@@ -10,8 +10,10 @@ const initialState = {
 export const ownerPrivilege = createAsyncThunk(
   'owner/ownerRequest',
   async (values) => {
-    console.log(values)
-    let response = await axios.post('/api/owner/register', values)
+    console.log(values.id)
+    const id = values.id
+
+    let response = await axios.post(`/api/owner/register/${id}`, values)
     return response.data
   }
 )

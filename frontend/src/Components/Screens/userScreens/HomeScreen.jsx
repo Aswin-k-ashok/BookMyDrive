@@ -40,7 +40,7 @@ function HomeScreen() {
                 <HomePageCards />
                 <HomeScreenCarousel />
                 <CarsCard />
-                {/* <SampleTable /> */}
+                <SampleTable />
             </Container>
 
 
