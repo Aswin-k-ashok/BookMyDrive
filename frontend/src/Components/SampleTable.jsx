@@ -1,5 +1,11 @@
 import * as React from 'react';
+import { useEffect } from 'react'
 import { DataGrid } from '@mui/x-data-grid';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { blockUser, unblockUser } from '../../../Redux/Features/adminFeatures/admin-userFeatures';
+import { getAllUsers } from "../../../Redux/Features/adminFeatures/GetAllUsersFeatures";
+
 
 const columns = [
     { field: 'fullName', headerName: 'Full Name' },
@@ -23,6 +29,28 @@ const rows = [
 ];
 
 export default function DataTable() {
+
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const tableData = useSelector((state) => {
+        return state['allUsers']
+    })
+    console.log(tableData)
+    useEffect(() => {
+        dispatch(getAllUsers())
+    }, [dispatch])
+
+    console.log(users)
+
+    const userBlockHandler = (id) => {
+        console.log(id)
+        dispatch(blockUser(id))
+    }
+    const userUnblockHandler = (id) => {
+        console.log(id)
+        dispatch(unblockUser(id))
+    }
+
     return (
         <div style={{ height: 400, width: '100%' }}>
             <DataGrid
