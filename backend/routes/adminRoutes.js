@@ -7,6 +7,7 @@ import {
   registerAdmin,
   unBlockUser,
   getOwnerRequest,
+  userTableData,
 } from '../controller/adminController.js'
 import { protect } from '../middlewares/authMiddlewares.js'
 
@@ -21,5 +22,6 @@ router
   .get(getOwnerRequest)
 router.route('/block').post(blockUser)
 router.route('/unblock').post(unBlockUser)
+router.route('/userTableData').get(userTableData)
 
 export default router

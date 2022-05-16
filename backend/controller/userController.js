@@ -29,6 +29,7 @@ const authUser = asyncHandler(async (req, res) => {
       isBlocked: user.isBlocked,
       isOwner: user.isOwner,
       email: user.email,
+      requestStatus: user.requestStatus,
       profilePic: user.profilePic,
       token: generateToken(user._id),
     })

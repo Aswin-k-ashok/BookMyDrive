@@ -11,7 +11,7 @@ import HomeScreenCarousel from '../../HomeScreenCarousel'
 import CustomModal from '../CustomModal'
 import { openModalAction } from '../../../Redux/uiFeatures/modalFeature'
 // import { AllCars } from './AllCars'
-import SampleTable from '../../SampleTable'
+import DataTable from '../../DataTable'
 
 
 function HomeScreen() {
@@ -40,7 +40,7 @@ function HomeScreen() {
                 <HomePageCards />
                 <HomeScreenCarousel />
                 <CarsCard />
-                <SampleTable />
+                <DataTable />
             </Container>
 
 

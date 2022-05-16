@@ -1,3 +1,4 @@
+import tableDataReducer from './Features/adminFeatures/admin-TableDataFeature'
 import adminEditUserReducer from './Features/adminFeatures/admin-userFeatures'
 import adminLoginReducer from './Features/adminFeatures/adminLoginFeature'
 import allUserReducer from './Features/adminFeatures/GetAllUsersFeatures'
@@ -6,8 +7,8 @@ import allCarsReducer from './Features/carFeatures/getAllCarsFeature'
 import userCarReducer from './Features/carFeatures/userCarFeature'
 import userLoginReducer from './Features/userFeatures/userLoginFeatures'
 import ownerRequestReducer from './Features/userFeatures/userRequestToOwnerFeature'
-import snackbarReducer from './uiFeatures/snackbarFeature'
 import modalReducer from './uiFeatures/modalFeature'
+import snackbarReducer from './uiFeatures/snackbarFeature'
 
 const rootReducer = {
   logedInUser: userLoginReducer,
@@ -20,6 +21,7 @@ const rootReducer = {
   allUsers: allUserReducer,
   adminEditUser: adminEditUserReducer,
   ownerRequest: ownerRequestReducer,
+  tableData: tableDataReducer,
 }
 
 export default rootReducer

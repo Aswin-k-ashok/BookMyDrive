@@ -39,7 +39,6 @@ export default function CustomModal() {
     const modalPayload = useSelector((state) => {
         return state['modalData']
     })
-    console.log(modalPayload)
     const { modalOpen, modalMessage, buttonOneText, buttonOneColor, buttonTwoText, buttonTwoColor } = modalPayload
 
 

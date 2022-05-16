@@ -20,8 +20,6 @@ function CustomSnackbar() {
 
     const { snackbarOpen, snackBarType, snackbarMessage } = snackState
 
-    console.log(snackBarType)
-    console.log(snackbarMessage)
 
 
     // const handleClick = () => {

@@ -19,6 +19,11 @@ const useStyles = makeStyles({
         border: '1px solid rgba( 255, 255, 255, 0.18 )',
         padding: '1em'
 
+    },
+    iFrame: {
+        width: '100%',
+        height: '15em',
+        borderRadius: '8px',
     }
 })
 
@@ -43,25 +48,33 @@ function OwnerRegister() {
         dispatch(ownerPrivilege({ licence: idcard, regNo: registerNumber, password: password, email: email, phone: phone, id: id }))
     }
 
+    console.log(user)
+
     return (
         <div>
 
             <Box className={classes.flexForm}>
                 <h4>Become our partner</h4>
-                <form className={classes.flexForm} onSubmit={submitHandler}>
-                    <p>Register With your id(voters/DrivingLicence)</p>
-                    <TextField type='text' placeholder='Identificaton' value={idcard} onChange={(e) => { setIdcard(e.target.value) }} />
+                {user.requestStatus ? (<div >
+                    <iframe src="https://embed.lottiefiles.com/animation/80559" className={classes.iFrame}></iframe>
+                    <h1>Please wait.... We are reviewing your application</h1>
+                </div>) : (
 
-                    <TextField type='text' placeholder='Register number of your car' value={registerNumber} onChange={(e) => { setRegisterNumber(e.target.value) }} />
+                    <form className={classes.flexForm} onSubmit={submitHandler}>
+                        <p>Register With your id(voters/DrivingLicence)</p>
+                        <TextField type='text' placeholder='Identificaton' value={idcard} onChange={(e) => { setIdcard(e.target.value) }} />
+
+                        <TextField type='text' placeholder='Register number of your car' value={registerNumber} onChange={(e) => { setRegisterNumber(e.target.value) }} />
 
 
-                    <TextField type='password' placeholder='Type password to confirm' value={password} onChange={(e) => { setPassword(e.target.value) }} />
-                    <Button variant='contained' type='submit' style={{ width: 'fit-content', marginLeft: 'auto' }}>Send Request for approval</Button>
-                    {/* <Button variant='contained' onClick={() => navigate('/ownerDash')} >proceed to payment</Button> */}
-                </form>
+                        <TextField type='password' placeholder='Type password to confirm' value={password} onChange={(e) => { setPassword(e.target.value) }} />
+                        <Button variant='contained' type='submit' style={{ width: 'fit-content', marginLeft: 'auto' }}>Send Request for approval</Button>
+                        {/* <Button variant='contained' onClick={() => navigate('/ownerDash')} >proceed to payment</Button> */}
+                    </form>
+                )}
             </Box>
 
-        </div>
+        </div >
     )
 }
 

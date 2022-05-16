@@ -146,6 +146,27 @@ const unBlockUser = asyncHandler(async (req, res) => {
   })
 })
 
+//@ desc get data user table
+//@ route get/api/admin/getuserTableData
+//@ access private admin
+
+const userTableData = asyncHandler(async (req, res) => {
+  const user = await User.find().select('_id firstName lastName email phone')
+
+  console.log(user)
+
+  res.json({ user })
+  // res.json({
+  //   _id: user._id,
+  //   firstName: user.firstName,
+  //   lastName: user.lastName,
+  //   phone: user.phone,
+  //   isBlocked: user.isBlocked,
+  //   isOwner: user.isOwner,
+  //   email: user.email,
+  // })
+})
+
 export {
   registerAdmin,
   adminLogin,
@@ -154,4 +175,5 @@ export {
   ownerPrivilegeRemove,
   blockUser,
   unBlockUser,
+  userTableData,
 }

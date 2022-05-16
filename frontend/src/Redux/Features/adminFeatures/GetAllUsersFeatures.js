@@ -8,7 +8,8 @@ const initialState = {
 }
 
 export const getAllUsers = createAsyncThunk('/allusers', async () => {
-  let response = await axios.get('/api/users')
+  let response = await axios.get('/api/admin/userTableData')
+  console.log(response.data)
   return response.data
 })
 

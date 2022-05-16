@@ -23,7 +23,6 @@ function CarsCard() {
         return state['allCars']
     })
 
-    console.log(allCars.cars)
     let cars = allCars.cars
 
     useEffect(() => {
